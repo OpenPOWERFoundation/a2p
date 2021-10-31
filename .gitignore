@@ -1,0 +1,11 @@
+
+
+__pycache__
+*.pyc
+
+vivado*jou
+vivado*log
+
+*.o
+*.d
+

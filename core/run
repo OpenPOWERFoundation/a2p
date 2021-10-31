@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sbt "runMain a2p.demo.A2P_WB_Verilog"
+
