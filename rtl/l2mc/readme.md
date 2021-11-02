@@ -1,10 +1,14 @@
 # L2 Multicore
 
-* WB bridge for multiple cores
+* Multicore bridge to WB
 
-   * generate 1-4 core interfaces (slave WB-I, slave WB-D, OPMC extension (opcode/WIMG/...))
+   * generate 1-4 core interfaces (possibly mixed)
 
-   * configurable load and store queues per interface (if pipelined buses)
+      * slave WB-I, slave WB-D, OPMC extension (opcode/WIMG/...)
+
+      * a2i/a2o out-of-order/credits/... style
+
+   * configurable load and store queues per interface (if pipelined/credited interfaces)
 
    * point-of-coherency/snoop/sync/... logic
 
