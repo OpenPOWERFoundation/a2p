@@ -15,54 +15,54 @@
 # -------------------------------------------------------------------------------------------------
 tst_misc:
 
-tst_name:      .asciz "$tst_name"
-tst_info:      .asciz "$tst_info"
+tst_name:      .asciz "simple"
+tst_info:      .asciz "wtf"
 
-.set SAVESPR,$savespr
-.set MAGIC,$magic
+.set SAVESPR,tar
+.set MAGIC,0x08675309
 
 # -------------------------------------------------------------------------------------------------
 .align 5
 tst_inits:
 
-init_r0:       .long $init_r0
-init_r1:       .long $init_r1
-init_r2:       .long $init_r2
-init_r3:       .long $init_r3
-init_r4:       .long $init_r4
-init_r5:       .long $init_r5
-init_r6:       .long $init_r6
-init_r7:       .long $init_r7
-init_r8:       .long $init_r8
-init_r9:       .long $init_r9
-init_r10:      .long $init_r10
-init_r11:      .long $init_r11
-init_r12:      .long $init_r12
-init_r13:      .long $init_r13
-init_r14:      .long $init_r14
-init_r15:      .long $init_r15
-init_r16:      .long $init_r16
-init_r17:      .long $init_r17
-init_r18:      .long $init_r18
-init_r19:      .long $init_r19
-init_r20:      .long $init_r20
-init_r21:      .long $init_r21
-init_r22:      .long $init_r22
-init_r23:      .long $init_r23
-init_r24:      .long $init_r24
-init_r25:      .long $init_r25
-init_r26:      .long $init_r26
-init_r27:      .long $init_r27
-init_r28:      .long $init_r28
-init_r29:      .long $init_r29
-init_r30:      .long $init_r30
-init_r31:      .long $init_r31
+init_r0:       .long 0x00000000
+init_r1:       .long 0x00000000
+init_r2:       .long 0x00000000
+init_r3:       .long 0x00000000
+init_r4:       .long 0x00000000
+init_r5:       .long 0x00000000
+init_r6:       .long 0x00000000
+init_r7:       .long 0x00000000
+init_r8:       .long 0x00000000
+init_r9:       .long 0x00000000
+init_r10:      .long 0x00000000
+init_r11:      .long 0x00000000
+init_r12:      .long 0x00000000
+init_r13:      .long 0x00000000
+init_r14:      .long 0x00000000
+init_r15:      .long 0x00000000
+init_r16:      .long 0x00000000
+init_r17:      .long 0x00000000
+init_r18:      .long 0x00000000
+init_r19:      .long 0x00000000
+init_r20:      .long 0x00000000
+init_r21:      .long 0x00000000
+init_r22:      .long 0x00000000
+init_r23:      .long 0x00000000
+init_r24:      .long 0x00000000
+init_r25:      .long 0x00000000
+init_r26:      .long 0x00000000
+init_r27:      .long 0x00000000
+init_r28:      .long 0x00000000
+init_r29:      .long 0x00000000
+init_r30:      .long 0x00000000
+init_r31:      .long 0x00000000
 
-init_cr:       .long $init_cr
-init_xer:      .long $init_xer
-init_ctr:      .long $init_ctr
-init_lr:       .long $init_lr
-init_tar:      .long $init_tar
+init_cr:       .long 0x00000000
+init_xer:      .long 0x00000000
+init_ctr:      .long 0xF0000000
+init_lr:       .long 0x00000000
+init_tar:      .long 0x00000000
 
 save_r1:       .long 0
 
@@ -126,7 +126,11 @@ init_tst:
 tst_start:
 
 # -------------------------------------------------------------------------------------------------
-$stream
+			addi       r3,r3,1
+			addi       r3,r3,1
+			addi       r3,r3,1
+			addi       r4,r0,-3
+			add.       r4,r4,r3
 # -------------------------------------------------------------------------------------------------
 
 tst_end:
@@ -240,41 +244,41 @@ rslt_tar:      .long 0xFFFFFFFF
 .align 5
 tst_expects:
 
-expt_r0:       .long $expt_r0
-expt_r1:       .long $expt_r1
-expt_r2:       .long $expt_r2
-expt_r3:       .long $expt_r3
-expt_r4:       .long $expt_r4
-expt_r5:       .long $expt_r5
-expt_r6:       .long $expt_r6
-expt_r7:       .long $expt_r7
-expt_r8:       .long $expt_r8
-expt_r9:       .long $expt_r9
-expt_r10:      .long $expt_r10
-expt_r11:      .long $expt_r11
-expt_r12:      .long $expt_r12
-expt_r13:      .long $expt_r13
-expt_r14:      .long $expt_r14
-expt_r15:      .long $expt_r15
-expt_r16:      .long $expt_r16
-expt_r17:      .long $expt_r17
-expt_r18:      .long $expt_r18
-expt_r19:      .long $expt_r19
-expt_r20:      .long $expt_r20
-expt_r21:      .long $expt_r21
-expt_r22:      .long $expt_r22
-expt_r23:      .long $expt_r23
-expt_r24:      .long $expt_r24
-expt_r25:      .long $expt_r25
-expt_r26:      .long $expt_r26
-expt_r27:      .long $expt_r27
-expt_r28:      .long $expt_r28
-expt_r29:      .long $expt_r29
-expt_r30:      .long $expt_r30
-expt_r31:      .long $expt_r31
+expt_r0:       .long 0x00000000
+expt_r1:       .long 0x00000000
+expt_r2:       .long 0x00000000
+expt_r3:       .long 0x00000003
+expt_r4:       .long 0x00000000
+expt_r5:       .long 0x00000000
+expt_r6:       .long 0x00000000
+expt_r7:       .long 0x00000000
+expt_r8:       .long 0x00000000
+expt_r9:       .long 0x00000000
+expt_r10:      .long 0x00000000
+expt_r11:      .long 0x00000000
+expt_r12:      .long 0x00000000
+expt_r13:      .long 0x00000000
+expt_r14:      .long 0x00000000
+expt_r15:      .long 0x00000000
+expt_r16:      .long 0x00000000
+expt_r17:      .long 0x00000000
+expt_r18:      .long 0x00000000
+expt_r19:      .long 0x00000000
+expt_r20:      .long 0x00000000
+expt_r21:      .long 0x00000000
+expt_r22:      .long 0x00000000
+expt_r23:      .long 0x00000000
+expt_r24:      .long 0x00000000
+expt_r25:      .long 0x00000000
+expt_r26:      .long 0x00000000
+expt_r27:      .long 0x00000000
+expt_r28:      .long 0x00000000
+expt_r29:      .long 0x00000000
+expt_r30:      .long 0x00000000
+expt_r31:      .long 0x00000000
 
-expt_cr:       .long $expt_cr
-expt_xer:      .long $expt_xer
-expt_ctr:      .long $expt_ctr
-expt_lr:       .long $expt_lr
-expt_tar:      .long $expt_tar
+expt_cr:       .long 0x20000000
+expt_xer:      .long 0x00000000
+expt_ctr:      .long 0xF0000000
+expt_lr:       .long 0x00000000
+expt_tar:      .long 0x00000000

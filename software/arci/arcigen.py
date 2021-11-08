@@ -164,6 +164,7 @@ class Add(Op):
       return self
 
    def print(self):
+      self.addToStream()
       lines.append(f'I {self.cia:08X} {self.op}')
       for i in range(len(self.res)):
          lines.append(f'R {self.res[i][0]:6} {self.res[i][1]:08X} {self.res[i][2]}')
@@ -202,6 +203,7 @@ class Add_R(Op):
       return self
 
    def print(self):
+      self.addToStream()
       lines.append(f'I {self.cia:08X} {self.op}')
       for i in range(len(self.res)):
          lines.append(f'R {self.res[i][0]:6} {self.res[i][1]:08X} {self.res[i][2]}')
@@ -258,7 +260,7 @@ def genAsm(tplFile, asmFile):
    for k,f in facs.items():
       if f.spr:
          tstData[f'init_{f.rname.lower()}'] = f'0x{f.init:08X}'
-         tstData[f'expt_{f.rname.lower()}'] = f'0x{f.init:08X}'
+         tstData[f'expt_{f.rname.lower()}'] = f'0x{f.value:08X}'
 
    for i in range(32):
       v = gpr[f'r{i}'].init
