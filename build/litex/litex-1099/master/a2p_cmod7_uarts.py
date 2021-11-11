@@ -119,14 +119,11 @@ class BaseSoC(SoCCore):
 
         # goes to csr(0) but dont see reset, and all the csr arent given addresses
         #  by the time this is done
-        # also not showing in final csr's
         csrDirectory = CSRDirectory([
            # should be this probably, but 'CSRConstant' object has no attribute 'finalize'
            #CSRConstant(name='directory', value=0x08675309)
            CSRStorage(name='directory', reset=0x08675309),
            CSRStorage(name='csr_0800'),
-           #CSRStorage(name='csr_1000'),
-           #CSRStorage(name='csr_1800'),
            # ...
         ], 32, 'big')
         self.submodules.directory = csrDirectory
@@ -235,11 +232,14 @@ class BaseSoC(SoCCore):
 
         #self.submodules.uart_1 = UART(UARTPHY(pins, sys_clk_freq, 115200))
         #self.submodules.uart_1 = UARTBone(UARTPHY(pins, sys_clk_freq, 115200), sys_clk_freq)
+
+        #self.add_wb_master(self.uart_1.wishbone)
         #self.add_csr('uart_1')
 
         self.submodules.uart_1_phy = UARTPHY(pins, sys_clk_freq, 115200)
         self.submodules.uart_1 = UARTBone(phy=self.uart_1_phy, clk_freq=sys_clk_freq)
         self.bus.add_master(name='uart_1', master=self.uart_1.wishbone)
+        #self.add_csr('uart_1')
 
         # GPIO Custom Serial -------------------------------------------------------------------------
         self.submodules.dshot_0 = GPIOOut(
