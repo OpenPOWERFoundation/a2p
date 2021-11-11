@@ -106,18 +106,10 @@ class BaseSoC(SoCCore):
         pins = Record([("tx", 1), ("rx", 1)])
         pins.tx = platform.request('digital', 10)
         pins.rx = platform.request('digital', 11)
-        #self.submodules.uart_1 = UARTWishboneBridge(pins, sys_clk_freq, baudrate=115200)
-        #self.add_wb_master(self.uart_1.wishbone)
 
-        #self.submodules.uart_1 = UART(UARTPHY(pins, sys_clk_freq, 115200))
-        #self.submodules.uart_1 = UARTBone(UARTPHY(pins, sys_clk_freq, 115200), sys_clk_freq)
-
-        #self.add_wb_master(self.uart_1.wishbone)
-        #self.add_csr('uart_1')
-
-        self.submodules.uart_1_phy = UARTPHY(pins, sys_clk_freq, 115200)
-        self.submodules.uart_1 = UARTBone(phy=self.uart_1_phy, clk_freq=sys_clk_freq)
-        #self.bus.add_master(name='uart_1', master=self.uart_1.wishbone)
+        self.submodules.uart_1_phy = RS232PHY(pins, sys_clk_freq, 115200, with_dynamic_baudrate=True)
+        self.add_csr('uart_1_phy')
+        self.submodules.uart_1 = UART(phy=self.uart_1_phy)
         self.add_csr('uart_1')
 
 
