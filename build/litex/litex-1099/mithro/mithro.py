@@ -40,6 +40,7 @@ from litex.soc.interconnect import wishbone
 
 from litex.soc.cores import uart
 from litex.soc.cores.uart import UART
+from litex.soc.cores.uart import RS232PHY
 from litex.soc.cores.uart import UARTPHY
 from litex.soc.cores.uart import UARTBone
 from litex.soc.cores.uart import UARTWishboneBridge
@@ -130,7 +131,7 @@ def main():
 
     soc = BaseSoC(
         sys_clk_freq           = int(float(args.sys_clk_freq)),
-        with_analyzer          = args.with_analyzer,
+        #with_analyzer          = args.with_analyzer,
         **soc_sdram_argdict(args)
     )
 
