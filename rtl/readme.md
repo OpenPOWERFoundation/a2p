@@ -6,7 +6,7 @@
 
 ```
 from platforms import cmod7
-``
+```
 
 ### add local core
 
