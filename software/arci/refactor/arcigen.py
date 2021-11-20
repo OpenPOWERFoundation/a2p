@@ -41,6 +41,7 @@ from ctypes import c_uint32
 from arch import *
 from ops_add import *
 from ops_div import *
+from ops_mov import *
 
 # -------------------------------------------------------------------------------------------------
 # Initialization
@@ -56,7 +57,7 @@ magic = "0x08675309"
 savespr = "tar"
 
 tplFileAsm = 'arcitst.tpl'
-tstName = 'simple2'
+tstName = 'simple3'
 outFileTst = f'{tstName}.tst'
 outFileAsm = f'{tstName}.s'
 
@@ -153,6 +154,7 @@ divw = DivW(facs)
 divw_r = DivW(facs, rc= True)
 divwo = DivW(facs, oe=True)
 divwo_r = DivW(facs, rc=True, oe=True)
+mfcr = MFCR(facs)
 
 # -------------------------------------------------------------------------------------------------
 # Do something
@@ -168,6 +170,7 @@ lines.append('\n* Instructions\n')
 # phony dumb test
 def addToTest(op):
    op.addToStream(ops).print(lines)
+
 addi.do(facs.r3,facs.r3,1).addToStream(ops).print(lines)
 addi.do(facs.r3,facs.r3,1).addToStream(ops).print(lines)
 addi.do(facs.r3,facs.r3,1).addToStream(ops).print(lines)
@@ -177,7 +180,11 @@ addi.do(facs.r6, facs.r0, 10).addToStream(ops).print(lines)
 addi.do(facs.r7, facs.r0, -5).addToStream(ops).print(lines)
 addToTest(divw.do(facs.r8, facs.r6, facs.r7))
 addToTest(divw_r.do(facs.r9, facs.r6, facs.r7))
-
+addToTest(mfcr.do(facs.r31))
+addToTest(divw_r.do(facs.r10, facs.r7, facs.r6))
+addToTest(mfcr.do(facs.r30))
+addToTest(divw_r.do(facs.r11, facs.r6, facs.r6))
+addToTest(mfcr.do(facs.r30))
 
 lines.append('\n* Results (Changed)\n')
 printSPR(chg=True)

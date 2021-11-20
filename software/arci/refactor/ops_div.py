@@ -36,6 +36,7 @@ class DivW(Op):
       self.rt = rt
       self.ra = ra
       self.rb = rb
+      #wtf is this wrong for -5/10?  returning 0x80000000, not 0x00000000
       res = c_uint32(c_int32(gpr[ra].value).value // c_int32(gpr[rb].value).value).value
       gpr[rt].value = res
       gpr[ra].ref = True
