@@ -8,13 +8,13 @@
 
    * Dual (separate I/D) WB buses w/SMP extensions
 
-* bus interface
+* bus interfaces
 
-   * WB (non-SMP)
+   * single WB
+
+   * dual WB
 
 * functions
-
-   * arbitrates for WB bus
 
    * queues one or more core commands
 
@@ -24,6 +24,9 @@
 
    * optional mailbox interface for core-core peer and broadcast
 
+   * arbitrates for WB bus(es)
+
+   * gen responses for cores
 
 ## Possible configurations
 
@@ -31,6 +34,9 @@
 
 * one core, A2L2: bridge with SMP functions
 
-* multi-core: bridge for A2L2, queueing, arbitration, and SMP functions
+* multi-core: identical or mixed WB1/WB2/A2L2, queueing, arbitration, and SMP functions
 
 
+### syntax check
+
+```verilator --lint-only a2wb.v -Wno-LITENDIAN```

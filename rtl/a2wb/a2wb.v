@@ -1,46 +1,9 @@
 // A2 Core Bridge
 
-// should modularize as much as possible and just do messy rewiring here!
+// adapt cores and buses with generic module
+// one thread/core for now; multithread needs thread tag, deeper queues
 
-// one thread/core for now
-
-// possible extended command modifiers
-//    prefetch
-//    larx
-//    stcx
-//    lwsync
-//    hwsync
-//    tlbsync
-//    ici, icbi
-//    dci, dcbi, etc
-//    dcbtst
-//    dcbz
-//    tlbie, etc
-
-// possible extended responses
-//    errors
-//    crit first, xfer# for larger bus width on core side
-//    credits
-//    resv valid
-//    stcx comp/pass
-//    sync ack
-//    back inv val/addr
-
-// possible extra functions
-//    integrated L2
-//    doorbell/mailbox (peer/broadcast msg/rsp/intr side channel crossbar)
-
-
-
-// cores must be contiguous, starting at 0
-`define CORE_TYPE_NONE 4'h0
-`define CORE_TYPE_A2L2 4'h1
-`define CORE_TYPE_WB1  4'h2
-`define CORE_TYPE_WB2  4'h3
-
-`define BUS_TYPE_NONE  4'h0
-`define BUS_TYPE_WB1   4'h1
-`define BUS_TYPE_WB2   4'h2
+`include "defs.v"
 
 module A2WB #(
    parameter [0:15] CORE_TYPES = {`CORE_TYPE_WB2, `CORE_TYPE_NONE, `CORE_TYPE_NONE, `CORE_TYPE_NONE},
@@ -61,6 +24,8 @@ genvar i;
 // ------------------------------------------------------------------------------------------------
 // I/O Connections
 
+// cores must be contiguous, starting at 0
+
 wire i_wb_cyc [0:3];
 wire i_wb_stb [0:3];
 wire [31:2] i_wb_adr[0:3] ;
@@ -80,13 +45,13 @@ wire [7:0] ext_rsp [0:3];
 generate
    for (i = 0; i < 4; i++) begin
       case (CORE_TYPES[i*4:i*4+3])
-         4'h0: begin
+         `CORE_TYPE_NONE: begin
          end
-         4'h1: begin
+         `CORE_TYPE_A2L2: begin
             assign NUMCORES = NUMCORES + 1;
             // a2l2
          end
-         4'h2: begin
+         `CORE_TYPE_WB1: begin
             assign NUMCORES = NUMCORES + 1;
 
             wire [78:0] core_0_in;
@@ -101,7 +66,7 @@ generate
             assign core_out[i][32] = d_wb_ack[i];
             assign core_out[i][31:0] = d_wb_datr[i];
          end
-         4'h3: begin
+         `CORE_TYPE_WB2: begin
             assign NUMCORES = NUMCORES + 1;
 
             wire [110:0] core_in[i];
@@ -126,137 +91,128 @@ generate
 endgenerate
 
 // ------------------------------------------------------------------------------------------------
-// Command Queues/Addr Compare/Bypass
+// Command Interfaces
 //
-// cores can have either 1 or 2 buses; assume single-cmd outstanding per, for now
-// a2l2 could also allow 1 ld, 1 st credit and use 2 dedicated queues
-reg  [77:0] cmd_queue_q[0:3][0:1];
-wire [77:0] cmd_queue_d[0:3][0:1];
-wire [77:0] cmd_queue_in[0:3][0:1];
-wire [71:0] cmd_queue_out[0:3];
+
 generate
    for (i = 0; i < 4; i++) begin
       case (CORE_TYPES[i*4:i*4+3])
-         4'h0: begin
+         `CORE_TYPE_NONE: begin
          end
-         4'h1: begin
+         `CORE_TYPE_A2L2: begin
             // convert a2l2 to internal format
          end
-         4'h2: begin
-            // q[0] = i or d
-            assign cmd_queue_in[i][0][77] = d_wb_cyc[i] & d_wb_stb[i];  // valid
-            assign cmd_queue_in[i][0][76] = d_wb_we[i];
-            assign cmd_queue_in[i][0][75:72] = d_wb_sel[i];
-            assign cmd_queue_in[i][0][71:40] = d_wb_adr[i];
-            assign cmd_queue_in[i][0][39:8] = d_wb_datw[i];
-            assign cmd_queue_in[i][0][7:0] = ext_cmd[i];
+         `CORE_TYPE_WB1: begin
+            cmd_wb #(.CORE_TYPE(CORE_TYPES[i*4:i*4+3]), .BUS_TYPE(BUS_TYPE)) core_in (
+               .clk(clk),
+               .rst(rst),
+               .i_wb_cyc('b0),
+               .i_wb_stb('b0),
+               .i_wb_adr('h0),
+               .d_wb_cyc(d_wb_cyc[i]),
+               .d_wb_stb(d_wb_stb[i]),
+               .d_wb_we(d_wb_we[i]),
+               .d_wb_sel(d_wb_sel[i]),
+               .d_wb_adr(d_wb_adr[i]),
+               .d_wb_datw(d_wb_datw[i]),
+               .ext_cmd(ext_cmd[i]),
+               .cmd_taken('b0),
+               .cmd_out_0(),
+               .cmd_out_1()
+            );
          end
-         4'h3: begin
-            // q[0]=i, q[1]=d
-            assign cmd_queue_in[i][0][77] = i_wb_cyc[i] & i_wb_stb[i];  // valid
-            assign cmd_queue_in[i][0][76] = 'b0;
-            assign cmd_queue_in[i][0][75:72] = 'b0000;
-            assign cmd_queue_in[i][0][71:40] = d_wb_adr[i];
-            assign cmd_queue_in[i][0][39:8] = 'h000000;
-            assign cmd_queue_in[i][0][7:0] = ext_cmd[i];
-            assign cmd_queue_in[i][0][77] = d_wb_cyc[i] & d_wb_stb[i];  // valid
-            assign cmd_queue_in[i][0][76] = d_wb_we[i];
-            assign cmd_queue_in[i][0][75:72] = d_wb_sel[i];
-            assign cmd_queue_in[i][0][71:40] = d_wb_adr[i];
-            assign cmd_queue_in[i][0][39:8] = d_wb_datw[i];
-            assign cmd_queue_in[i][0][7:0] = ext_cmd[i];
+         `CORE_TYPE_WB2: begin
+            cmd_wb #(.CORE_TYPE(CORE_TYPES[i*4:i*4+3]), .BUS_TYPE(BUS_TYPE)) core_in (
+               .clk(clk),
+               .rst(rst),
+               .i_wb_cyc(i_wb_cyc[i]),
+               .i_wb_stb(i_wb_stb[i]),
+               .i_wb_adr(i_wb_adr[i]),
+               .d_wb_cyc(d_wb_cyc[i]),
+               .d_wb_stb(d_wb_stb[i]),
+               .d_wb_we(d_wb_we[i]),
+               .d_wb_sel(d_wb_sel[i]),
+               .d_wb_adr(d_wb_adr[i]),
+               .d_wb_datw(d_wb_datw[i]),
+               .ext_cmd(ext_cmd[i]),
+               .cmd_taken('b0),
+               .cmd_out_0(),
+               .cmd_out_1()
+            );
          end
       endcase
    end
 endgenerate
 
 // ------------------------------------------------------------------------------------------------
-// SMP
-
-// larx/stcx
-// assume:  if larx hits L1, core invalidates line automatically -> do not need to send back-invalidate
-//          reservation granule is 32B (or use lcd of all cores)
-//          one reservation per thread
-//          reservation is set before core receives reload data
-
-wire stcx_store [0:3];
-wire resv_ra_hit [0:3];
-wire resv_set [0:3];
-wire resv_rst [0:3];
-wire [27:0] resv_q [0:3]; // v, @31:5
-wire [27:0] resv_d [0:3];
-
-generate
-   for (i = 0; i < 4; i++) begin
-
-   end
-endgenerate
-
-// sync ack
-
-// cache ops
-
-// tlb ops
-
-// ------------------------------------------------------------------------------------------------
 // Arbitration
 //
-// LRU, etc. select from pending cmds
-generate
-   for (i = 0; i < 4; i++) begin
-   end
-endgenerate
+// LRU, etc. select from pending cmds; also needs smp to stall some/all cmds
+// do addr cmp here, if necessary? or could do in smp
+
+arb #() arb (
+
+);
+
+// ------------------------------------------------------------------------------------------------
+// SMP
+
+// special ops: track resv, stall pending cmds, gen rsp
+smp #() smp (
+
+);
 
 // ------------------------------------------------------------------------------------------------
 // Bus Out
+// commands to main bus
 
 generate
-   if (BUS_TYPE == `BUS_TYPE_WB1) begin
-
-   end else if (BUS_TYPE == `BUS_TYPE_WB2) begin
-
-      wire [101:0] bus_out;
-      wire bus_i_wb_stb;
-      assign bus_out[101] = bus_i_wb_stb;
-      wire [31:2] bus_i_wb_adr;
-      assign bus_out[100:71] = bus_i_wb_adr;
-      wire bus_d_wb_cyc;
-      assign bus_out[70] = bus_d_wb_cyc;
-      wire bus_d_wb_stb;
-      assign bus_out[69] = bus_d_wb_stb;
-      wire bus_d_wb_we;
-      assign bus_out[68] = bus_d_wb_we;
-      wire [3:0] bus_d_wb_sel;
-      assign bus_out[67:64] = bus_d_wb_sel;
-      wire [31:0] bus_d_wb_adr;
-      assign bus_out[63:32] = bus_d_wb_adr;
-      wire [31:0] bus_d_wb_datw;
-      assign bus_out[31:0] = bus_d_wb_datw;
-
-   end else begin
-   end
+   case(BUS_TYPE)
+      `BUS_TYPE_WB1: begin
+      end
+      `BUS_TYPE_WB2: begin
+         wire [101:0] bus_out;
+         wire bus_i_wb_stb;
+         assign bus_out[101] = bus_i_wb_stb;
+         wire [31:2] bus_i_wb_adr;
+         assign bus_out[100:71] = bus_i_wb_adr;
+         wire bus_d_wb_cyc;
+         assign bus_out[70] = bus_d_wb_cyc;
+         wire bus_d_wb_stb;
+         assign bus_out[69] = bus_d_wb_stb;
+         wire bus_d_wb_we;
+         assign bus_out[68] = bus_d_wb_we;
+         wire [3:0] bus_d_wb_sel;
+         assign bus_out[67:64] = bus_d_wb_sel;
+         wire [31:0] bus_d_wb_adr;
+         assign bus_out[63:32] = bus_d_wb_adr;
+         wire [31:0] bus_d_wb_datw;
+         assign bus_out[31:0] = bus_d_wb_datw;
+         end
+      endcase
 endgenerate
 
 // ------------------------------------------------------------------------------------------------
 // Bus In
+// responses from main bus
 
 generate
-   if (BUS_TYPE == `BUS_TYPE_WB1) begin
-
-   end else if (BUS_TYPE == `BUS_TYPE_WB2) begin
-
-      wire [65:0] bus_in;
-      wire bus_i_wb_ack = bus_in[65];
-      wire [31:0] bus_i_wb_datr = bus_in[64:33];
-      wire bus_d_wb_ack = bus_in[32];
-      wire [31:0] bus_d_wb_datr = bus_in[31:0];
-
-   end else begin
-   end
+   case(BUS_TYPE)
+      `BUS_TYPE_WB1: begin
+      end
+      `BUS_TYPE_WB2: begin
+         wire [65:0] bus_in;
+         wire bus_i_wb_ack = bus_in[65];
+         wire [31:0] bus_i_wb_datr = bus_in[64:33];
+         wire bus_d_wb_ack = bus_in[32];
+         wire [31:0] bus_d_wb_datr = bus_in[31:0];
+      end
+   endcase
 endgenerate
 
 // ------------------------------------------------------------------------------------------------
 // Response Queues
+// responses for cores
 
 generate
    for (i = 0; i < 4; i++) begin
@@ -265,6 +221,7 @@ endgenerate
 
 // ------------------------------------------------------------------------------------------------
 // Misc/Errors/Debug
+// stuff
 
 generate
    for (i = 0; i < 4; i++) begin
