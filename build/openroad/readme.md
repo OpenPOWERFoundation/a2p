@@ -1,4 +1,10 @@
 
+# Test Site
+
+* Litex platform for efabless caravel
+
+* Core, I2C, UARTs, SPI, GPIO
+
 
 #### https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts/tree/master/flow
 
@@ -40,5 +46,12 @@ https://github.com/The-OpenROAD-Project/OpenSTA/blob/35a3f1e4e3f148b30678f9455e6
 * global placement (global_placement)
 * detailed placement (legalize_placement)
 * CTS (clock_tree_synthesis)
-* global routing (fast_route)  ***the unit hangs appear here in report_power***
+* global routing (fast_route)
 * detailed routing (detailed_route)
+
+
+### replace inferred mems with DFFRAM components
+
+(readme-dffram.md)
+
+1. test with gpr using DFFRAMs and ic/dc dir/dat using small inferred mems (1 location)

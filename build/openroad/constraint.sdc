@@ -17,8 +17,7 @@ set_output_delay $output_delay_value -clock [get_clocks clk] [all_outputs]
 
 # false paths
 set_false_path -from [get_ports {reset}] -to [get_clocks clk]
-#wtf - is this the dc write path?
-set_false_path -from [get_nets {dBusWB_ACK}]
-set_false_path -from [get_nets {a2p_wb/dbuswb_ack}]
-set_false_path -from [get_nets {a2p_wb/dbuswb*}]
 
+#wtf - is this the dc write path?  lots of fo
+#set_false_path -from [get_nets {dBusWB_ACK}]
+#causes [ERROR STA-0467] unsupported object type Net
