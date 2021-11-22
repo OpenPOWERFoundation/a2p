@@ -27,6 +27,13 @@ https://people.eecs.berkeley.edu/~alanmi/abc/
 https://github.com/The-OpenROAD-Project/OpenSTA/blob/35a3f1e4e3f148b30678f9455e64d220c6758462/doc/OpenSTA.pdf
 
 
+## links
+
+https://github.com/ayush-saran/Openlane_Workshop_VSD
+
+
+
+
 ### steps
 
 1. initial synth/timing
@@ -55,3 +62,5 @@ https://github.com/The-OpenROAD-Project/OpenSTA/blob/35a3f1e4e3f148b30678f9455e6
 (readme-dffram.md)
 
 1. test with gpr using DFFRAMs and ic/dc dir/dat using small inferred mems (1 location)
+
+* completed flow
