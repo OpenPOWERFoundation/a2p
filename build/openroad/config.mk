@@ -28,7 +28,6 @@ export REPORT_SLACK_MAX_PATHS ?= 100
 #HACK! uniquify logs, objects, reports, results
 export DESIGN_NICKNAME := $(DESIGN_NICKNAME)/output/$(shell date "+%Y%m%d%H%M%S")
 $(info [WTF] Output Dirs: $(DESIGN_NICKNAME))
-# except there's a bug (yosys?)
 
 
 # ----------------------------------------------------------------------------------
