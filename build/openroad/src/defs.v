@@ -8,3 +8,5 @@
 `define GPR_3R1W 3
 
 `define DIR_RAM 1
+
+`define DATA_RAM 1

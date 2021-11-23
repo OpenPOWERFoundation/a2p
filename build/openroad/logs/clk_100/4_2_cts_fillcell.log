@@ -1,0 +1,22 @@
+OpenROAD v2.0-1901-g6157d4945 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ODB-0222] Reading LEF file: ./platforms/sky130hd/lef/sky130_fd_sc_hd.tlef
+[INFO ODB-0223]     Created 11 technology layers
+[INFO ODB-0224]     Created 25 technology vias
+[INFO ODB-0226] Finished LEF file:  ./platforms/sky130hd/lef/sky130_fd_sc_hd.tlef
+[INFO ODB-0222] Reading LEF file: ./platforms/sky130hd/lef/sky130_fd_sc_hd_merged.lef
+[INFO ODB-0225]     Created 437 library cells
+[INFO ODB-0226] Finished LEF file:  ./platforms/sky130hd/lef/sky130_fd_sc_hd_merged.lef
+[INFO ODB-0127] Reading DEF file: ./results/sky130hd/a2p/base/4_1_cts.def
+[INFO ODB-0128] Design: A2P_WB
+[INFO ODB-0094] 		Created 100000 Insts
+[INFO ODB-0094] 		Created 200000 Insts
+[INFO ODB-0094] 		Created 300000 Insts
+[INFO ODB-0130]     Created 254 pins.
+[INFO ODB-0131]     Created 349723 components and 996424 component-terminals.
+[INFO ODB-0132]     Created 2 special nets and 699446 connections.
+[INFO ODB-0133]     Created 83037 nets and 296650 connections.
+[INFO ODB-0134] Finished DEF file: ./results/sky130hd/a2p/base/4_1_cts.def
+[INFO DPL-0001] Placed 2328695 filler instances.
+Elapsed time: 0:15.56[h:]min:sec. CPU time: user 14.85 sys 0.67 (99%). Peak memory: 2321232KB.
