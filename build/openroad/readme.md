@@ -1,10 +1,19 @@
 
 # Test Site
 
-* Litex platform for efabless caravel
+<img align="right" src="imaynotbea10buttheboyssayicleanupgood.png" width="400">
 
-* Core, I2C, UARTs, SPI, GPIO
+* Litex platform for efabless Caravel
 
+   * Core(1 or 2)
+
+   * AsyncRAM GPIO Interface
+
+   * Misc: UARTs, I2C, toysram, ...
+
+<br clear="all" />
+
+## OpenROAD-flow-scripts
 
 #### https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts/tree/master/flow
 
@@ -16,8 +25,7 @@ rm ./logs/sky130hd/a2p/base/*  # should be same as make clean_synth
 make DESIGN_CONFIG=./designs/sky130hd/a2p/config.mk
 ```
 
-
-## docs
+### docs
 
 https://openroad.readthedocs.io/en/latest/user/UserGuide.html#option-1-rtl-to-gds-flow
 
@@ -28,11 +36,9 @@ https://people.eecs.berkeley.edu/~alanmi/abc/
 https://github.com/The-OpenROAD-Project/OpenSTA/blob/35a3f1e4e3f148b30678f9455e64d220c6758462/doc/OpenSTA.pdf
 
 
-## links
+### other links
 
 https://github.com/ayush-saran/Openlane_Workshop_VSD
-
-
 
 
 ### steps
@@ -66,12 +72,14 @@ https://github.com/ayush-saran/Openlane_Workshop_VSD
 
 * completed flow
 
+2. add ic/dc dir/dat (4K)
+
+* completes flow
+
 
 ## Yosys
 
-### Makefile
-
-
+* stuff from A2O experiments; synth probably still worth experimenting with
 
 ### synth.tcl
 
@@ -93,14 +101,10 @@ if { [info exists ::env(USE_LSORACLE)] } {
 }
 ```
 
-
 * the standard script just does ```opt``` after above
 
 ```
-#wtf allow selectable opt - not working? says no match - maybe you run multiple opts, one with each selection
-# seems to work with one; but there is a bunch of opt done with all - part of 'synth'? yes.  need to break up into
-# steps if want selective application (make new proc synth_wtf)
-# synth
+# need to break up into steps if want selective application (make new proc synth_wtf)
 # The following commands are executed by this synthesis command:
 #42
 #43 begin:
@@ -135,19 +139,12 @@ if { [info exists ::env(USE_LSORACLE)] } {
 #72 hierarchy -check
 #73 stat
 
-# try, to get rid of wreduce - xu has a path with 21 straight mux21
 proc synth_wtf {top {flatten 0}} {
 
   # begin:
   hierarchy -check -top $top
 
   # coarse:
-  #proc ;#really? how is this passed in tcl???
-#Warning: Module xu contains unmapped RTLIL processes. RTLIL processes
-#can't always be mapped directly to Verilog always blocks. Unintended
-#changes in simulation behavior are possible! Use "proc" to convert
-#processes to logic networks and registers.
-  #ok! and renames=rename
   procs
   if {$flatten} {
     flatten

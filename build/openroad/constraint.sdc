@@ -5,7 +5,10 @@
 
 set clk_name clk
 # set clk_period 50.0            ;# make it easy for or
-set clk_period 10.0
+#set clk_period 10.0             ;# 100Mhz
+#set clk_period 25.0             ;# 40Mhz
+set clk_period 40.0             ;# 25Mhz
+
 puts "\[WTF\] clk_period=$clk_period"
 
 set clkPort [get_ports $clk_name]
@@ -26,4 +29,4 @@ set_output_delay $output_delay_value -clock [get_clocks clk] [all_outputs]
 # false paths
 
 set_false_path -from [get_ports {reset}] -to [get_clocks clk]
-
+set_false_path -from [get_ports {externalResetVector}] -to [get_clocks clk]
