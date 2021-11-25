@@ -1,3 +1,7 @@
 dffram/
-output/results
-output/objects
+*.def
+*.gds
+*.guide
+*.spef
+*.lef
+*.mod
