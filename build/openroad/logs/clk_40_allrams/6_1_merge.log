@@ -1,0 +1,42 @@
+[INFO] Reporting cells prior to loading DEF ...
+[INFO] Reading DEF ...
+[INFO] Clearing cells...
+[INFO] ... preserving 'VIA_L1M1_PR'
+[INFO] ... preserving 'VIA_L1M1_PR_R'
+[INFO] ... preserving 'VIA_L1M1_PR_M'
+[INFO] ... preserving 'VIA_L1M1_PR_MR'
+[INFO] ... preserving 'VIA_L1M1_PR_C'
+[INFO] ... preserving 'VIA_M1M2_PR'
+[INFO] ... preserving 'VIA_M1M2_PR_R'
+[INFO] ... preserving 'VIA_M1M2_PR_M'
+[INFO] ... preserving 'VIA_M1M2_PR_MR'
+[INFO] ... preserving 'VIA_M1M2_PR_C'
+[INFO] ... preserving 'VIA_M2M3_PR'
+[INFO] ... preserving 'VIA_M2M3_PR_R'
+[INFO] ... preserving 'VIA_M2M3_PR_M'
+[INFO] ... preserving 'VIA_M2M3_PR_MR'
+[INFO] ... preserving 'VIA_M2M3_PR_C'
+[INFO] ... preserving 'VIA_M3M4_PR'
+[INFO] ... preserving 'VIA_M3M4_PR_R'
+[INFO] ... preserving 'VIA_M3M4_PR_M'
+[INFO] ... preserving 'VIA_M3M4_PR_MR'
+[INFO] ... preserving 'VIA_M3M4_PR_C'
+[INFO] ... preserving 'VIA_M4M5_PR'
+[INFO] ... preserving 'VIA_M4M5_PR_R'
+[INFO] ... preserving 'VIA_M4M5_PR_M'
+[INFO] ... preserving 'VIA_M4M5_PR_MR'
+[INFO] ... preserving 'VIA_M4M5_PR_C'
+[INFO] ... preserving 'VIA_via_1600x480'
+[INFO] ... preserving 'VIA_via2_1600x480'
+[INFO] ... preserving 'VIA_via3_1600x480'
+[INFO] ... preserving 'VIA_via4_1600x1600'
+[INFO] Merging GDS/OAS files...
+	./platforms/sky130hd/gds/sky130_fd_sc_hd.gds
+[INFO] Copying toplevel cell 'A2P_WB'
+INFO: Reading config file: ./platforms/sky130hd/fill.json
+[INFO] Checking for missing cell from GDS/OAS...
+[INFO] All LEF cells have matching GDS/OAS cells
+[INFO] Checking for orphan cell in the final layout...
+[INFO] No orphan cells
+[INFO] Writing out GDS/OAS 'results/sky130hd/a2p/base/6_1_merged.gds'
+Elapsed time: 0:55.16[h:]min:sec. CPU time: user 51.61 sys 2.62 (98%). Peak memory: 6584748KB.

@@ -22,23 +22,24 @@ GCC_FLAGS = {
 }
 
 class A2P(CPU, AutoCSR):
-    name                 = "a2p"
-    human_name           = "a2p"
+    name                 = 'a2p'
+    human_name           = 'a2p'
+    family               = 'ppc32'
     variants             = CPU_VARIANTS
     data_width           = 32
-    endianness           = "big"
-    gcc_triple           = "powerpc-linux-gnu"
-    linker_output_format = "elf32-powerpc"
-    nop                  = "nop"
+    endianness           = 'big'
+    gcc_triple           = 'powerpc-linux-gnu'
+    linker_output_format = 'elf32-powerpc'
+    nop                  = 'nop'
     io_regions           = {0x80000000: 0x80000000} # origin, length
 
     @property
     def mem_map(self):
         return {
-            "rom":          0x00000000,
-            "sram":         0x00004000,
-            "main_ram":     0x40000000,
-            "csr":          0xf0000000,
+            'rom':          0x00000000,
+            'sram':         0x00004000,
+            'main_ram':     0x40000000,
+            'csr':          0xf0000000,
         }
 
     @property
@@ -54,7 +55,7 @@ class A2P(CPU, AutoCSR):
 
          self.platform         = platform
          self.variant          = variant
-         self.human_name       = CPU_VARIANTS.get(variant, "A2P")
+         self.human_name       = CPU_VARIANTS.get(variant, 'A2P')
          self.external_variant = None
          self.reset            = Signal()
          self.interrupt        = Signal(32)

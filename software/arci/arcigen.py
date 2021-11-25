@@ -35,10 +35,12 @@ licenses for the specific Power ISA Core are granted under this modified Apache 
 """
 
 from types import MethodType
-from ctypes import c_uint32
+from string import Template
 import time
+from ctypes import c_uint32
 
-# set up
+# -------------------------------------------------------------------------------------------------
+# Initialization
 
 header = """
 * arci v.0.0001
@@ -47,13 +49,27 @@ header = """
 header += f'* Generated: {time.strftime("%b %d %Y %I:%M:%S %p %Z", time.gmtime())}\n'
 header += '*\n'
 
+magic = "0x08675309"
+savespr = "tar"
+
+tplFileAsm = 'arcitst.tpl'
+tstName = 'simple'
+outFileTst = f'{tstName}.tst'
+outFileAsm = f'{tstName}.s'
+
+# -------------------------------------------------------------------------------------------------
+# Process command line
+
+
 # -------------------------------------------------------------------------------------------------
 # Classes
 
 class Fac:
 
-   def __init__(self, name, value=None, spr=False, gpr=False, fpr=False, vsr=False):
+   def __init__(self, name, value=None, spr=False, gpr=False, fpr=False, vsr=False, rname=None):
       self.name = name
+      self.rname = name if rname is None else rname
+      self.init = value
       self.value = value
       self.spr = spr
       self.gpr = gpr
@@ -67,7 +83,7 @@ class Fac:
       return ''
 
    def print(self):
-      lines.append(f'R {self.name:6} {self.value:08X}')
+      lines.append(f'R {self.rname:6} {self.value:08X}')
 
 
 class Op:
@@ -85,6 +101,11 @@ class Op:
          v = 0xFFFF0000 + v
       return v
 
+   # has to also keep addresses since tst can be sparse when branching (to gen'd label)
+   def addToStream(self):
+      ops.append(self.op)
+
+
 # probs make different Op versions for different formats
 class Addi(Op):
 
@@ -96,7 +117,7 @@ class Addi(Op):
       self.ra = ra
       self.imm = v
       v = self.se16(v)
-      if ra == "R00":
+      if ra == 'r0':
          res = c_uint32(v).value
       else:
          res = c_uint32(c_uint32(gpr[ra].value).value + v).value
@@ -104,15 +125,17 @@ class Addi(Op):
       self.cia = cia.value
       cia.value += 4
       self.nia = cia.value
-      if ra != "R00":
+      if ra != 'r0':
          gpr[ra].ref = True
       gpr[rt].chg = True
       cia.chg = True
-      self.res = [(rt, gpr[rt].value, gpr[rt].comment()),(cia.name, self.nia, cia.comment())]
+      self.op = f'{self.name:10s} {self.rt},{self.ra},{self.imm}'
+      self.res = [(gpr[rt].rname, gpr[rt].value, gpr[rt].comment()),(cia.rname, self.nia, cia.comment())]
       return self
 
    def print(self):
-      lines.append(f'I {self.cia:08X} {self.name:10s} {self.rt},{self.ra},{self.imm}')
+      self.addToStream()
+      lines.append(f'I {self.cia:08X} {self.op}')
       for i in range(len(self.res)):
          lines.append(f'R {self.res[i][0]:6} {self.res[i][1]:08X} {self.res[i][2]}')
       lines.append('')
@@ -136,11 +159,13 @@ class Add(Op):
       gpr[rb].ref = True
       gpr[rt].chg = True
       cia.chg = True
-      self.res = [(rt, gpr[rt].value, gpr[rt].comment()),(cia.name, self.nia, cia.comment())]
+      self.op = f'{self.name:10s} {self.rt},{self.ra},{self.rb}'
+      self.res = [(gpr[rt].rname, gpr[rt].value, gpr[rt].comment()),(cia.rname, self.nia, cia.comment())]
       return self
 
    def print(self):
-      lines.append(f'I {self.cia:08X} {self.name:10s} {self.rt},{self.ra},{self.rb}')
+      self.addToStream()
+      lines.append(f'I {self.cia:08X} {self.op}')
       for i in range(len(self.res)):
          lines.append(f'R {self.res[i][0]:6} {self.res[i][1]:08X} {self.res[i][2]}')
       lines.append('')
@@ -173,11 +198,13 @@ class Add_R(Op):
       gpr[rt].chg = True
       cr.chg = True
       cia.chg = True
-      self.res = [(rt, gpr[rt].value,gpr[rt].comment()), (cr.name, cr.value, cr.comment()), (cia.name, self.nia, cia.comment())]
+      self.op = f'{self.name:10s} {self.rt},{self.ra},{self.rb}'
+      self.res = [(gpr[rt].rname, gpr[rt].value,gpr[rt].comment()), (cr.rname, cr.value, cr.comment()), (cia.rname, self.nia, cia.comment())]
       return self
 
    def print(self):
-      lines.append(f'I {self.cia:08X} {self.name:10s} {self.rt},{self.ra},{self.rb}')
+      self.addToStream()
+      lines.append(f'I {self.cia:08X} {self.op}')
       for i in range(len(self.res)):
          lines.append(f'R {self.res[i][0]:6} {self.res[i][1]:08X} {self.res[i][2]}')
       lines.append('')
@@ -192,9 +219,10 @@ class Add_R(Op):
 # chg=True: print only if changed
 
 def printSPR(all=False, ref=None, chg=None):
+
    for k,f in facs.items():
       if f.spr:
-         n = f.name
+         n = f.rname
          v = f.value
          c = f.comment()
          if all or (v != 0 and ref is None and chg is None) or (ref is not None and f.ref == ref) or (chg is not None and f.chg == chg):
@@ -202,9 +230,10 @@ def printSPR(all=False, ref=None, chg=None):
 
 
 def printRegs(all=False, ref=None, chg=None):
+
    for i in range(32):
-      n = f'R{i:02}'
-      g = gpr[n]
+      g = gpr[f'r{i}']
+      n = g.rname
       v = g.value
       c = g.comment()
       if all or (v != 0 and ref is None and chg is None) or (ref is not None and g.ref == ref) or (chg is not None and g.chg == chg):
@@ -215,12 +244,49 @@ def printTest():
    for i in range(len(lines)):
       print(lines[i])
 
+def genAsm(tplFile, asmFile):
+
+   f = open(tplFile, 'r')
+   tplString = f.read()
+   tpl = Template(tplString)
+
+   tstData = {
+      'tst_name': tstName,
+      'tst_info': 'wtf',
+      'magic': magic,
+      'savespr': savespr
+   }
+
+   for k,f in facs.items():
+      if f.spr:
+         tstData[f'init_{f.rname.lower()}'] = f'0x{f.init:08X}'
+         tstData[f'expt_{f.rname.lower()}'] = f'0x{f.value:08X}'
+
+   for i in range(32):
+      v = gpr[f'r{i}'].init
+      tstData[f'init_r{i}'] = f'0x{v:08X}'
+      v = gpr[f'r{i}'].value
+      tstData[f'expt_r{i}'] = f'0x{v:08X}'
+
+   stream = ''
+   for i in range(len(ops)):
+      stream += f'\t\t\t{ops[i]}\n'
+
+   tstData['stream'] = stream[0:-1]
+
+   tpl = tpl.substitute(tstData)
+
+   f = open(asmFile, "w")
+   f.write(tpl)
+   f.close()
+
+
 # -------------------------------------------------------------------------------------------------
 # Create facs and aliases
 
 lines = []
 facs = {}
-ops = {}
+ops = []
 
 cia = Fac('CIA', 0x120000, spr=True)
 
@@ -240,52 +306,57 @@ def xerSO(self):
 xer = Fac('XER', 0, spr=True)
 xer.so = MethodType(xerSO, xer)
 
-srr0 = Fac('SRR0', 0, spr=True)
-srr1 = Fac('SRR1', 0, spr=True)
-dar = Fac('DAR', 0, spr=True)
-dsisr = Fac('DSISR',0, spr=True)
+ctr = Fac('CTR', 0xF0000000, spr=True)
+lr = Fac('LR', 0, spr=True)
+tar = Fac('TAR', 0, spr=True)
 
-# probs some trick
-r0  = 'R00'
-r1  = 'R01'
-r2  = 'R02'
-r3  = 'R03'
-r4  = 'R04'
-r5  = 'R05'
-r6  = 'R06'
-r7  = 'R07'
-r8  = 'R08'
-r9  = 'R09'
-r10 = 'R10'
-r11 = 'R11'
-r12 = 'R12'
-r13 = 'R13'
-r14 = 'R14'
-r15 = 'R15'
-r16 = 'R16'
-r17 = 'R17'
-r18 = 'R18'
-r19 = 'R19'
-r20 = 'R20'
-r21 = 'R21'
-r22 = 'R22'
-r23 = 'R23'
-r24 = 'R24'
-r25 = 'R25'
-r26 = 'R26'
-r27 = 'R27'
-r28 = 'R28'
-r29 = 'R29'
-r30 = 'R30'
-r31 = 'R31'
+#srr0 = Fac('SRR0', 0, spr=True)
+#srr1 = Fac('SRR1', 0, spr=True)
+#dar = Fac('DAR', 0, spr=True)
+#dsisr = Fac('DSISR',0, spr=True)
 
 gpr = {}
+# probs some trick
+r0  = 'r0'
+r1  = 'r1'
+r2  = 'r2'
+r3  = 'r3'
+r4  = 'r4'
+r5  = 'r5'
+r6  = 'r6'
+r7  = 'r7'
+r8  = 'r8'
+r9  = 'r9'
+r10 = 'r10'
+r11 = 'r11'
+r12 = 'r12'
+r13 = 'r13'
+r14 = 'r14'
+r15 = 'r15'
+r16 = 'r16'
+r17 = 'r17'
+r18 = 'r18'
+r19 = 'r19'
+r20 = 'r20'
+r21 = 'r21'
+r22 = 'r22'
+r23 = 'r23'
+r24 = 'r24'
+r25 = 'r25'
+r26 = 'r26'
+r27 = 'r27'
+r28 = 'r28'
+r29 = 'r29'
+r30 = 'r30'
+r31 = 'r31'
+
 def commentGPR(self):
    return f'* {self.value:10}'
 
 for i in range(32):
-   name = f'R{i:02}'
-   gpr[name] = Fac(name, 0, gpr=True)
+   #name = f'R{i:02}'
+   name = f'r{i}'
+   gpr[name] = Fac(name, 0, gpr=True, rname=f'R{i:02}')
    gpr[name].comment = MethodType(commentGPR, gpr[name])
 
 # -------------------------------------------------------------------------------------------------
@@ -323,6 +394,6 @@ printSPR(all=True)
 printRegs(all=True)
 
 # create .tst file
-# create .s file
-# create .o file (or two, one the test, one the test+runner)
 printTest()
+# create .s file
+genAsm(tplFileAsm, outFileAsm)

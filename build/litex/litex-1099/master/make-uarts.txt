@@ -1,0 +1,118 @@
+Compat: SoCSDRAM is deprecated since 2020-03-24 and will soon no longer work, please update. Switch to SoCCore/add_sdram/soc_core_args instead...........thanks :)
+Namespace(build=False, bus_address_width=32, bus_data_width=32, bus_standard='wishbone', bus_timeout=1000000.0, cpu_cfu=None, cpu_reset_address=None, cpu_type=None, cpu_variant=None, csr_address_width=14, csr_csv='csr.csv', csr_data_width=None, csr_json=None, csr_ordering='big', csr_paging=2048, csr_svd=None, doc=False, gateware_dir=None, generated_dir=None, ident=None, ident_version=None, include_dir=None, integrated_main_ram_size=None, integrated_rom_init=None, integrated_rom_size=131072, integrated_sram_size=8192, l2_size=8192, load=False, memory_x=None, no_compile_gateware=False, no_compile_software=True, no_ctrl=False, no_timer=False, no_uart=False, output_dir=None, software_dir=None, sys_clk_freq=100000000.0, timer_uptime=False, uart_baudrate=None, uart_fifo_depth=16, uart_name='serial', with_analyzer=False)
+INFO:SoC:        __   _ __      _  __  
+INFO:SoC:       / /  (_) /____ | |/_/  
+INFO:SoC:      / /__/ / __/ -_)>  <    
+INFO:SoC:     /____/_/\__/\__/_/|_|  
+INFO:SoC:  Build your hardware, easily!
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:Creating SoC... (2021-11-11 09:20:35)
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:FPGA device : xc7a35t-CPG236-1.
+INFO:SoC:System clock: 100.000MHz.
+INFO:SoCBusHandler:Creating Bus Handler...
+INFO:SoCBusHandler:32-bit wishbone Bus, 4.0GiB Address Space.
+INFO:SoCBusHandler:Adding reserved Bus Regions...
+INFO:SoCBusHandler:Bus Handler created.
+INFO:SoCCSRHandler:Creating CSR Handler...
+INFO:SoCCSRHandler:32-bit CSR Bus, 32-bit Aligned, 16.0KiB Address Space, 2048B Paging, big Ordering (Up to 32 Locations).
+INFO:SoCCSRHandler:Adding reserved CSRs...
+INFO:SoCCSRHandler:CSR Handler created.
+INFO:SoCIRQHandler:Creating IRQ Handler...
+INFO:SoCIRQHandler:IRQ Handler (up to 32 Locations).
+INFO:SoCIRQHandler:Adding reserved IRQs...
+INFO:SoCIRQHandler:IRQ Handler created.
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:Initial SoC:
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:32-bit wishbone Bus, 4.0GiB Address Space.
+INFO:SoC:32-bit CSR Bus, 32-bit Aligned, 16.0KiB Address Space, 2048B Paging, big Ordering (Up to 32 Locations).
+INFO:SoC:IRQ Handler (up to 32 Locations).
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoCBusHandler:io0 Region added at Origin: 0x80000000, Size: 0x80000000, Mode: RW, Cached: False Linker: False.
+INFO:SoC:CPU overriding rom mapping from 0x0 to 0x0.
+INFO:SoC:CPU overriding sram mapping from 0x1000000 to 0x4000.
+INFO:SoC:CPU overriding main_ram mapping from 0x40000000 to 0x40000000.
+INFO:SoCBusHandler:cpu_bus0 added as Bus Master.
+INFO:SoCBusHandler:cpu_bus1 added as Bus Master.
+INFO:SoCIRQHandler:uart IRQ allocated at Location 0.
+INFO:SoCIRQHandler:timer0 IRQ allocated at Location 1.
+INFO:S7MMCM:Creating S7MMCM, speedgrade -1.
+INFO:S7MMCM:Registering Single Ended ClkIn of 12.00MHz.
+INFO:S7MMCM:Creating ClkOut0 sys of 100.00MHz (+-10000.00ppm).
+INFO:S7MMCM:Creating ClkOut1 sys2x of 200.00MHz (+-10000.00ppm).
+INFO:S7MMCM:Creating ClkOut2 idelay of 200.00MHz (+-10000.00ppm).
+INFO:SoCCSRHandler:directory CSR allocated at Location 0.
+directory0
+csr_08000
+INFO:SoC:ROM Read 65452 bytes for preload.  Wrote mem_1.init..
+INFO:SoCBusHandler:rom Region added at Origin: 0x00000000, Size: 0x00010000, Mode: R, Cached: True Linker: False.
+INFO:SoCBusHandler:rom added as Bus Slave.
+INFO:SoC:RAM rom added Origin: 0x00000000, Size: 0x00010000, Mode: R, Cached: True Linker: False.
+INFO:SoCBusHandler:sram Region added at Origin: 0x00100000, Size: 0x00080000, Mode: RW, Cached: True Linker: False.
+INFO:SoCBusHandler:sram added as Bus Slave.
+INFO:SoC:SRAM sram added Origin: 0x00100000, Size: 0x00080000, Mode: RW, Cached: True Linker: False.
+INFO:SoCCSRHandler:dna CSR allocated at Location 1.
+INFO:SoCCSRHandler:xadc CSR allocated at Location 2.
+INFO:SoCCSRHandler:leds CSR allocated at Location 3.
+INFO:SoCCSRHandler:buttons CSR allocated at Location 4.
+INFO:SoCCSRHandler:i2c CSR allocated at Location 5.
+INFO:SoCBusHandler:uart_1 added as Bus Master.
+INFO:SoCCSRHandler:dshot_0 CSR allocated at Location 6.
+INFO:S7MMCM:Config:
+divclk_divide : 1
+clkout0_freq  : 100.00MHz
+clkout0_divide: 6
+clkout0_phase : 0.00°
+clkout1_freq  : 200.00MHz
+clkout1_divide: 3
+clkout1_phase : 0.00°
+clkout2_freq  : 200.00MHz
+clkout2_divide: 3
+clkout2_phase : 0.00°
+vco           : 600.00MHz
+clkfbout_mult : 50
+INFO:SoCBusHandler:csr Region added at Origin: 0xfff00000, Size: 0x00010000, Mode: RW, Cached: False Linker: False.
+INFO:SoCBusHandler:csr added as Bus Slave.
+INFO:SoCCSRHandler:bridge added as CSR Master.
+INFO:SoCBusHandler:Interconnect: InterconnectShared (3 <-> 3).
+INFO:SoCCSRHandler:ctrl CSR allocated at Location 7.
+INFO:SoCCSRHandler:identifier_mem CSR allocated at Location 8.
+INFO:SoCCSRHandler:timer0 CSR allocated at Location 9.
+INFO:SoCCSRHandler:uart CSR allocated at Location 10.
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:Finalized SoC:
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:32-bit wishbone Bus, 4.0GiB Address Space.
+IO Regions: (1)
+io0                 : Origin: 0x80000000, Size: 0x80000000, Mode: RW, Cached: False Linker: False
+Bus Regions: (3)
+rom                 : Origin: 0x00000000, Size: 0x00010000, Mode: R, Cached: True Linker: False
+sram                : Origin: 0x00100000, Size: 0x00080000, Mode: RW, Cached: True Linker: False
+csr                 : Origin: 0xfff00000, Size: 0x00010000, Mode: RW, Cached: False Linker: False
+Bus Masters: (3)
+- cpu_bus0
+- cpu_bus1
+- uart_1
+Bus Slaves: (3)
+- rom
+- sram
+- csr
+INFO:SoC:32-bit CSR Bus, 32-bit Aligned, 16.0KiB Address Space, 2048B Paging, big Ordering (Up to 32 Locations).
+CSR Locations: (11)
+- directory      : 0
+- dna            : 1
+- xadc           : 2
+- leds           : 3
+- buttons        : 4
+- i2c            : 5
+- dshot_0        : 6
+- ctrl           : 7
+- identifier_mem : 8
+- timer0         : 9
+- uart           : 10
+INFO:SoC:IRQ Handler (up to 32 Locations).
+IRQ Locations: (2)
+- uart   : 0
+- timer0 : 1
+INFO:SoC:--------------------------------------------------------------------------------
