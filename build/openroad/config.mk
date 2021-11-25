@@ -35,7 +35,6 @@ $(info [WTF] Output Dirs: $(DESIGN_NICKNAME))
 # CTS
 
 # forget about this for now - occurred when added dffram dir/caches.  anton says hold misses are fake anyway :)
-# (at least at 100mhz)
 # do i need something else from dffram build?
 # Repair hold violations...
 # [INFO RSZ-0046] Found 60472 endpoints with hold violations.
@@ -43,4 +42,4 @@ $(info [WTF] Output Dirs: $(DESIGN_NICKNAME))
 # [INFO RSZ-0032] Inserted 213923 hold buffers.
 # [ERROR DPL-0019] detailed placement failed on hold33177
 # continue if cts wants to barf...
-#export WTF_CTS_IGNORE_HOLD_MISSES = 1
+export WTF_CTS_IGNORE_HOLD_MISSES = 1

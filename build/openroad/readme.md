@@ -11,6 +11,20 @@
 
    * Misc: UARTs, I2C, toysram, ...
 
+* To Do
+
+   * pre-place i/o's before synth
+
+   * synth experiments (LSOracle and/or opt refinement)
+
+   * get packed DFFRAMs incorporated
+
+   * modify code to do a 3R1W reg
+
+   * modify code to do non-power-of-2 words
+
+   * should 1Kx32 be built from smaller blocks?
+
 <br clear="all" />
 
 ## OpenROAD-flow-scripts
@@ -39,6 +53,8 @@ https://github.com/The-OpenROAD-Project/OpenSTA/blob/35a3f1e4e3f148b30678f9455e6
 ### other links
 
 https://github.com/ayush-saran/Openlane_Workshop_VSD
+
+https://docs.google.com/document/d/13J1AY1zhzxur8vaFs3rRW9ZWX113rSDs63LezOOoXZ8/edit#heading=h.9y68197ebff7
 
 
 ### steps

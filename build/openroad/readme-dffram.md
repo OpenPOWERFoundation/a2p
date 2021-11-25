@@ -2,6 +2,14 @@
 
 * manually replace inferred mem with array macros; eventually make all arrays components (inferred for FPGA, phys for tech)
 
+* how do you integrate with OpenLane?
+
+1. use built .v from dffram.py?  and run a fixup after to place?
+2. reference dffram.py module but don't include .v?
+3. totally place/route dffram and then include it?
+4. include/copy stuff from build dir to openlane somewhere?
+
+
 ## Arrays to convert to DFFRAM
 
 * IC (4K)
@@ -51,8 +59,7 @@
 
 ```
 # clone DFFRam
-export PDK_ROOT=/home/wtf/projects2/OpenLane/pdks
-
+```export PDK_ROOT``` if not set up already
 # optionally set design name for any builds; **doesn't set the output name**
 # export FORCE_DESIGN_NAME=ram_32_32
 ```
