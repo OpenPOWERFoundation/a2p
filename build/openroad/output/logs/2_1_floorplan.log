@@ -1,0 +1,320 @@
+OpenROAD v2.0-1901-g6157d4945 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ODB-0222] Reading LEF file: ./platforms/sky130hd/lef/sky130_fd_sc_hd.tlef
+[INFO ODB-0223]     Created 11 technology layers
+[INFO ODB-0224]     Created 25 technology vias
+[INFO ODB-0226] Finished LEF file:  ./platforms/sky130hd/lef/sky130_fd_sc_hd.tlef
+[INFO ODB-0222] Reading LEF file: ./platforms/sky130hd/lef/sky130_fd_sc_hd_merged.lef
+[INFO ODB-0225]     Created 437 library cells
+[INFO ODB-0226] Finished LEF file:  ./platforms/sky130hd/lef/sky130_fd_sc_hd_merged.lef
+[WTF] clk_period=40.0
+number instances in verilog is 432348
+[INFO IFP-0001] Added 1535 rows of 10390 sites.
+[INFO RSZ-0026] Removed 34250 buffers.
+Default units for flow
+ time 1ns
+ capacitance 1pF
+ resistance 1kohm
+ voltage 1v
+ current 1mA
+ power 1nW
+ distance 1um
+
+==========================================================================
+floorplan final report_checks -path_delay min
+--------------------------------------------------------------------------
+Startpoint: externalResetVector[1] (input port clocked by clk)
+Endpoint: _404211_ (removal check against rising-edge clock clk)
+Path Group: **async_default**
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00 v input external delay
+                  0.00    0.00    0.00 v externalResetVector[1] (in)
+     2    0.00                           externalResetVector[1] (net)
+                  0.00    0.00    0.00 v _346224_/B (sky130_fd_sc_hd__nand2_1)
+                  0.05    0.05    0.05 ^ _346224_/Y (sky130_fd_sc_hd__nand2_1)
+     1    0.00                           _000305_ (net)
+                  0.05    0.01    0.06 ^ _404211_/SET_B (sky130_fd_sc_hd__dfbbp_1)
+                                  0.06   data arrival time
+
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00   clock reconvergence pessimism
+                                  0.00 ^ _404211_/CLK (sky130_fd_sc_hd__dfbbp_1)
+                          0.11    0.11   library removal time
+                                  0.11   data required time
+-----------------------------------------------------------------------------
+                                  0.11   data required time
+                                 -0.06   data arrival time
+-----------------------------------------------------------------------------
+                                 -0.05   slack (VIOLATED)
+
+
+Startpoint: iBusWB_DAT_MISO[0] (input port clocked by clk)
+Endpoint: _348143_ (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00 ^ input external delay
+                  0.00    0.00    0.00 ^ iBusWB_DAT_MISO[0] (in)
+     1    0.00                           iBusWB_DAT_MISO[0] (net)
+                  0.00    0.00    0.00 ^ _348143_/D (sky130_fd_sc_hd__dfxtp_1)
+                                  0.00   data arrival time
+
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00   clock reconvergence pessimism
+                                  0.00 ^ _348143_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                         -0.03   -0.03   library hold time
+                                 -0.03   data required time
+-----------------------------------------------------------------------------
+                                 -0.03   data required time
+                                 -0.00   data arrival time
+-----------------------------------------------------------------------------
+                                  0.03   slack (MET)
+
+
+
+==========================================================================
+floorplan final report_checks -path_delay max
+--------------------------------------------------------------------------
+Startpoint: externalResetVector[1] (input port clocked by clk)
+Endpoint: _404211_ (recovery check against rising-edge clock clk)
+Path Group: **async_default**
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00 ^ input external delay
+                  0.00    0.00    0.00 ^ externalResetVector[1] (in)
+     2    0.00                           externalResetVector[1] (net)
+                  0.00    0.00    0.00 ^ _346189_/A_N (sky130_fd_sc_hd__nand2b_1)
+                  0.04    0.07    0.07 ^ _346189_/Y (sky130_fd_sc_hd__nand2b_1)
+     1    0.00                           _000304_ (net)
+                  0.04    0.00    0.07 ^ _404211_/RESET_B (sky130_fd_sc_hd__dfbbp_1)
+                                  0.07   data arrival time
+
+                  0.00   40.00   40.00   clock clk (rise edge)
+                          0.00   40.00   clock network delay (ideal)
+                          0.00   40.00   clock reconvergence pessimism
+                                 40.00 ^ _404211_/CLK (sky130_fd_sc_hd__dfbbp_1)
+                         -0.07   39.93   library recovery time
+                                 39.93   data required time
+-----------------------------------------------------------------------------
+                                 39.93   data required time
+                                 -0.07   data arrival time
+-----------------------------------------------------------------------------
+                                 39.85   slack (MET)
+
+
+Startpoint: _359636_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.WORD[3].W.BYTE[0].B.genblk1.CG
+          (rising clock gating-check end-point clocked by clk')
+Path Group: clk
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                  0.00    0.00    0.00 ^ _359636_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                  1.67    1.43    1.43 ^ _359636_/Q (sky130_fd_sc_hd__dfxtp_1)
+    45    0.18                           dataCache_1_.stageB_mmuRsp_isIoAccess (net)
+                  1.67    0.00    1.44 ^ _176469_/A (sky130_fd_sc_hd__nor2b_1)
+                  0.34    0.32    1.75 v _176469_/Y (sky130_fd_sc_hd__nor2b_1)
+     7    0.02                           _057091_ (net)
+                  0.34    0.00    1.75 v _176630_/B1 (sky130_fd_sc_hd__a211oi_1)
+                  0.20    0.31    2.06 ^ _176630_/Y (sky130_fd_sc_hd__a211oi_1)
+     1    0.00                           _057181_ (net)
+                  0.20    0.00    2.07 ^ _176631_/B1 (sky130_fd_sc_hd__a31oi_1)
+                  0.09    0.08    2.15 v _176631_/Y (sky130_fd_sc_hd__a31oi_1)
+     2    0.01                           _057182_ (net)
+                  0.09    0.00    2.15 v _176688_/A2 (sky130_fd_sc_hd__a211oi_1)
+                 26.48   19.76   21.91 ^ _176688_/Y (sky130_fd_sc_hd__a211oi_1)
+   365    0.92                           _057233_ (net)
+                 26.48    0.00   21.91 ^ _176692_/A (sky130_fd_sc_hd__nor3_1)
+                  8.42   10.11   32.02 v _176692_/Y (sky130_fd_sc_hd__nor3_1)
+    42    0.10                           _057237_ (net)
+                  8.42    0.00   32.02 v _176698_/A2 (sky130_fd_sc_hd__a22o_1)
+                  0.17    2.38   34.40 v _176698_/X (sky130_fd_sc_hd__a22o_1)
+     2    0.00                           _057243_ (net)
+                  0.17    0.00   34.41 v _176788_/A2 (sky130_fd_sc_hd__o32ai_1)
+                955.00  714.13  748.54 ^ _176788_/Y (sky130_fd_sc_hd__o32ai_1)
+  9416   33.23                           _057333_ (net)
+                955.00    0.00  748.54 ^ _176798_/A2 (sky130_fd_sc_hd__o21ai_0)
+                 21.05 5747.95 6496.49 v _176798_/Y (sky130_fd_sc_hd__o21ai_0)
+  1024    1.99                           IBusCachedPlugin_cache.ways_0_datas.adr[0] (net)
+                 21.05    0.00 6496.49 v IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.DEC0.AND3/C (sky130_fd_sc_hd__and4b_2)
+                  0.68    7.89 6504.39 v IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.DEC0.AND3/X (sky130_fd_sc_hd__and4b_2)
+     8    0.02                           IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.WORD[3].W.SEL0 (net)
+                  0.68    0.00 6504.39 v IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.WORD[3].W.BYTE[0].B.CGAND/A (sky130_fd_sc_hd__and2_1)
+                  0.20    0.36 6504.75 v IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.WORD[3].W.BYTE[0].B.CGAND/X (sky130_fd_sc_hd__and2_1)
+     1    0.00                           IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.WORD[3].W.BYTE[0].B.WE0_WIRE (net)
+                  0.20    0.00 6504.75 v IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.WORD[3].W.BYTE[0].B.genblk1.CG/GATE (sky130_fd_sc_hd__dlclkp_1)
+                               6504.75   data arrival time
+
+                  0.00   20.00   20.00   clock clk' (rise edge)
+                          0.00   20.00   clock network delay (ideal)
+                          0.00   20.00   clock reconvergence pessimism
+                                 20.00 ^ IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.WORD[3].W.BYTE[0].B.genblk1.CG/CLK (sky130_fd_sc_hd__dlclkp_1)
+                         -0.19   19.81   library setup time
+                                 19.81   data required time
+-----------------------------------------------------------------------------
+                                 19.81   data required time
+                               -6504.75   data arrival time
+-----------------------------------------------------------------------------
+                               -6484.94   slack (VIOLATED)
+
+
+
+==========================================================================
+floorplan final report_checks -unconstrained
+--------------------------------------------------------------------------
+Startpoint: externalResetVector[1] (input port clocked by clk)
+Endpoint: _404211_ (recovery check against rising-edge clock clk)
+Path Group: **async_default**
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00 ^ input external delay
+                  0.00    0.00    0.00 ^ externalResetVector[1] (in)
+     2    0.00                           externalResetVector[1] (net)
+                  0.00    0.00    0.00 ^ _346189_/A_N (sky130_fd_sc_hd__nand2b_1)
+                  0.04    0.07    0.07 ^ _346189_/Y (sky130_fd_sc_hd__nand2b_1)
+     1    0.00                           _000304_ (net)
+                  0.04    0.00    0.07 ^ _404211_/RESET_B (sky130_fd_sc_hd__dfbbp_1)
+                                  0.07   data arrival time
+
+                  0.00   40.00   40.00   clock clk (rise edge)
+                          0.00   40.00   clock network delay (ideal)
+                          0.00   40.00   clock reconvergence pessimism
+                                 40.00 ^ _404211_/CLK (sky130_fd_sc_hd__dfbbp_1)
+                         -0.07   39.93   library recovery time
+                                 39.93   data required time
+-----------------------------------------------------------------------------
+                                 39.93   data required time
+                                 -0.07   data arrival time
+-----------------------------------------------------------------------------
+                                 39.85   slack (MET)
+
+
+Startpoint: _359636_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.WORD[3].W.BYTE[0].B.genblk1.CG
+          (rising clock gating-check end-point clocked by clk')
+Path Group: clk
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                  0.00    0.00    0.00 ^ _359636_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                  1.67    1.43    1.43 ^ _359636_/Q (sky130_fd_sc_hd__dfxtp_1)
+    45    0.18                           dataCache_1_.stageB_mmuRsp_isIoAccess (net)
+                  1.67    0.00    1.44 ^ _176469_/A (sky130_fd_sc_hd__nor2b_1)
+                  0.34    0.32    1.75 v _176469_/Y (sky130_fd_sc_hd__nor2b_1)
+     7    0.02                           _057091_ (net)
+                  0.34    0.00    1.75 v _176630_/B1 (sky130_fd_sc_hd__a211oi_1)
+                  0.20    0.31    2.06 ^ _176630_/Y (sky130_fd_sc_hd__a211oi_1)
+     1    0.00                           _057181_ (net)
+                  0.20    0.00    2.07 ^ _176631_/B1 (sky130_fd_sc_hd__a31oi_1)
+                  0.09    0.08    2.15 v _176631_/Y (sky130_fd_sc_hd__a31oi_1)
+     2    0.01                           _057182_ (net)
+                  0.09    0.00    2.15 v _176688_/A2 (sky130_fd_sc_hd__a211oi_1)
+                 26.48   19.76   21.91 ^ _176688_/Y (sky130_fd_sc_hd__a211oi_1)
+   365    0.92                           _057233_ (net)
+                 26.48    0.00   21.91 ^ _176692_/A (sky130_fd_sc_hd__nor3_1)
+                  8.42   10.11   32.02 v _176692_/Y (sky130_fd_sc_hd__nor3_1)
+    42    0.10                           _057237_ (net)
+                  8.42    0.00   32.02 v _176698_/A2 (sky130_fd_sc_hd__a22o_1)
+                  0.17    2.38   34.40 v _176698_/X (sky130_fd_sc_hd__a22o_1)
+     2    0.00                           _057243_ (net)
+                  0.17    0.00   34.41 v _176788_/A2 (sky130_fd_sc_hd__o32ai_1)
+                955.00  714.13  748.54 ^ _176788_/Y (sky130_fd_sc_hd__o32ai_1)
+  9416   33.23                           _057333_ (net)
+                955.00    0.00  748.54 ^ _176798_/A2 (sky130_fd_sc_hd__o21ai_0)
+                 21.05 5747.95 6496.49 v _176798_/Y (sky130_fd_sc_hd__o21ai_0)
+  1024    1.99                           IBusCachedPlugin_cache.ways_0_datas.adr[0] (net)
+                 21.05    0.00 6496.49 v IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.DEC0.AND3/C (sky130_fd_sc_hd__and4b_2)
+                  0.68    7.89 6504.39 v IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.DEC0.AND3/X (sky130_fd_sc_hd__and4b_2)
+     8    0.02                           IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.WORD[3].W.SEL0 (net)
+                  0.68    0.00 6504.39 v IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.WORD[3].W.BYTE[0].B.CGAND/A (sky130_fd_sc_hd__and2_1)
+                  0.20    0.36 6504.75 v IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.WORD[3].W.BYTE[0].B.CGAND/X (sky130_fd_sc_hd__and2_1)
+     1    0.00                           IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.WORD[3].W.BYTE[0].B.WE0_WIRE (net)
+                  0.20    0.00 6504.75 v IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.WORD[3].W.BYTE[0].B.genblk1.CG/GATE (sky130_fd_sc_hd__dlclkp_1)
+                               6504.75   data arrival time
+
+                  0.00   20.00   20.00   clock clk' (rise edge)
+                          0.00   20.00   clock network delay (ideal)
+                          0.00   20.00   clock reconvergence pessimism
+                                 20.00 ^ IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.WORD[3].W.BYTE[0].B.genblk1.CG/CLK (sky130_fd_sc_hd__dlclkp_1)
+                         -0.19   19.81   library setup time
+                                 19.81   data required time
+-----------------------------------------------------------------------------
+                                 19.81   data required time
+                               -6504.75   data arrival time
+-----------------------------------------------------------------------------
+                               -6484.94   slack (VIOLATED)
+
+
+
+==========================================================================
+floorplan final report_tns
+--------------------------------------------------------------------------
+tns -13826056.00
+
+==========================================================================
+floorplan final report_wns
+--------------------------------------------------------------------------
+wns -6484.94
+
+==========================================================================
+floorplan final report_worst_slack
+--------------------------------------------------------------------------
+worst slack -6484.94
+
+==========================================================================
+floorplan final report_clock_skew
+--------------------------------------------------------------------------
+Clock clk
+Latency      CRPR       Skew
+IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.SLICE[0].RAM8.WORD[1].W.BYTE[0].B.BIT[0].genblk1.STORAGE/GATE ^
+   0.26
+IBusCachedPlugin_cache.ways_0_datas.dir.BANK512[0].RAM512.BANK128[0].RAM128.BLOCK[0].RAM32.Do0_FF[0]/CLK ^
+   0.00      0.00       0.26
+
+
+==========================================================================
+floorplan final report_power
+--------------------------------------------------------------------------
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power
+----------------------------------------------------------------
+Sequential             1.00e-01   2.91e-03   9.29e-07   1.03e-01  22.0%
+Combinational          3.45e-01   2.11e-02   8.90e-07   3.66e-01  78.1%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  4.45e-01   2.40e-02   1.82e-06   4.69e-01 100.0%
+                          94.9%       5.1%       0.0%
+
+==========================================================================
+floorplan final report_design_area
+--------------------------------------------------------------------------
+Design area 4627248 u^2 23% utilization.
+
+Elapsed time: 2:28.41[h:]min:sec. CPU time: user 147.85 sys 0.52 (99%). Peak memory: 1319716KB.
