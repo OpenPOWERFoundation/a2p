@@ -17,7 +17,9 @@ some bugs in CR/XER handling.
 
 * Need to define supported translation modes.
 
-* SOC builds with Litex; software is built manually and runs from 'ROM' with on-board RAM.
+* SOC builds with Litex; ~~software is built manually and runs from 'ROM' with on-board RAM.~~
+
+    * now running Litex BiOS, coremark, prototype test environment, etc. with async RAM interface on Cmod-A7 ISSI chip.
 
 * Core and SOC run in Verilator/pyverilator.  SOC uses emulated host UART.
 
