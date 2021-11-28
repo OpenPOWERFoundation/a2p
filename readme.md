@@ -13,7 +13,7 @@ A2P is a mashup of OpenPOWER architecture and VexRiscv, creating a new 32b Power
 <img align="right" width="50%" src="media/sim.png">
 
 * Ops (100+) not thoroughly tested, but running a minimal kernel and partial Litex BIOS in Verilator and on FPGAs.  Likely still
-some bugs in CR/XER handling.
+some bugs in CR/XER handling for div/mul(?).
 
 * Need to define supported translation modes.
 
