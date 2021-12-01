@@ -1,0 +1,492 @@
+OpenROAD v2.0-1901-g6157d4945 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ODB-0222] Reading LEF file: ./platforms/sky130hd/lef/sky130_fd_sc_hd.tlef
+[INFO ODB-0223]     Created 11 technology layers
+[INFO ODB-0224]     Created 25 technology vias
+[INFO ODB-0226] Finished LEF file:  ./platforms/sky130hd/lef/sky130_fd_sc_hd.tlef
+[INFO ODB-0222] Reading LEF file: ./platforms/sky130hd/lef/sky130_fd_sc_hd_merged.lef
+[INFO ODB-0225]     Created 437 library cells
+[INFO ODB-0226] Finished LEF file:  ./platforms/sky130hd/lef/sky130_fd_sc_hd_merged.lef
+[INFO ODB-0127] Reading DEF file: ./results/sky130hd/a2p/base/2_floorplan.def
+[INFO ODB-0128] Design: A2P_WB
+[INFO ODB-0094] 		Created 100000 Insts
+[INFO ODB-0094] 		Created 200000 Insts
+[INFO ODB-0094] 		Created 300000 Insts
+[INFO ODB-0130]     Created 254 pins.
+[INFO ODB-0131]     Created 344463 components and 975384 component-terminals.
+[INFO ODB-0132]     Created 2 special nets and 688926 connections.
+[INFO ODB-0133]     Created 77777 nets and 286452 connections.
+[INFO ODB-0134] Finished DEF file: ./results/sky130hd/a2p/base/2_floorplan.def
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: 460 2720
+[INFO GPL-0004] CoreAreaLxLy: 210220 212160
+[INFO GPL-0005] CoreAreaUxUy: 4989620 4387360
+[INFO GPL-0006] NumInstances: 344463
+[INFO GPL-0007] NumPlaceInstances: 78562
+[INFO GPL-0008] NumFixedInstances: 265901
+[INFO GPL-0009] NumDummyInstances: 0
+[INFO GPL-0010] NumNets: 77777
+[INFO GPL-0011] NumPins: 286706
+[INFO GPL-0012] DieAreaLxLy: 0 0
+[INFO GPL-0013] DieAreaUxUy: 5200000 4609140
+[INFO GPL-0014] CoreAreaLxLy: 210220 212160
+[INFO GPL-0015] CoreAreaUxUy: 4989620 4387360
+[INFO GPL-0016] CoreArea: 19954950880000
+[INFO GPL-0017] NonPlaceInstsArea: 332695331200
+[INFO GPL-0018] PlaceInstsArea: 1728178710400
+[INFO GPL-0019] Util(%): 8.81
+[INFO GPL-0020] StdInstsArea: 1728178710400
+[INFO GPL-0021] MacroInstsArea: 0
+[InitialPlace]  Iter: 1 CG Error: 0.00850115 HPWL: 1578098575
+[InitialPlace]  Iter: 2 CG Error: 0.00011517 HPWL: 1157650885
+[InitialPlace]  Iter: 3 CG Error: 0.00002250 HPWL: 1124443183
+[InitialPlace]  Iter: 4 CG Error: 0.00000630 HPWL: 1114752247
+[InitialPlace]  Iter: 5 CG Error: 0.00000383 HPWL: 1111906825
+[INFO GPL-0031] FillerInit: NumGCells: 536760
+[INFO GPL-0032] FillerInit: NumGNets: 77777
+[INFO GPL-0033] FillerInit: NumGPins: 286706
+[INFO GPL-0023] TargetDensity: 0.60
+[INFO GPL-0024] AveragePlaceInstArea: 21997641
+[INFO GPL-0025] IdealBinArea: 36662732
+[INFO GPL-0026] IdealBinCnt: 544284
+[INFO GPL-0027] TotalBinArea: 19954950880000
+[INFO GPL-0028] BinCnt: 512 512
+[INFO GPL-0029] BinSize: 9335 8155
+[INFO GPL-0030] NumBins: 262144
+[NesterovSolve] Iter: 1 overflow: 0.996147 HPWL: 548926693
+[NesterovSolve] Iter: 10 overflow: 0.987203 HPWL: 632425412
+[NesterovSolve] Iter: 20 overflow: 0.979323 HPWL: 729609532
+[NesterovSolve] Iter: 30 overflow: 0.977077 HPWL: 725711076
+[NesterovSolve] Iter: 40 overflow: 0.976295 HPWL: 723570420
+[NesterovSolve] Iter: 50 overflow: 0.975941 HPWL: 719413738
+[NesterovSolve] Iter: 60 overflow: 0.975887 HPWL: 713447664
+[NesterovSolve] Iter: 70 overflow: 0.975689 HPWL: 712095673
+[NesterovSolve] Iter: 80 overflow: 0.97586 HPWL: 713423398
+[NesterovSolve] Iter: 90 overflow: 0.975927 HPWL: 711437993
+[NesterovSolve] Iter: 100 overflow: 0.975856 HPWL: 710835720
+[NesterovSolve] Iter: 110 overflow: 0.975769 HPWL: 710505240
+[NesterovSolve] Iter: 120 overflow: 0.97577 HPWL: 710471259
+[NesterovSolve] Iter: 130 overflow: 0.975741 HPWL: 710755191
+[NesterovSolve] Iter: 140 overflow: 0.975628 HPWL: 712647202
+[NesterovSolve] Iter: 150 overflow: 0.975677 HPWL: 719704294
+[NesterovSolve] Iter: 160 overflow: 0.975574 HPWL: 738130373
+[NesterovSolve] Iter: 170 overflow: 0.975251 HPWL: 766609491
+[NesterovSolve] Iter: 180 overflow: 0.974668 HPWL: 800267501
+[NesterovSolve] Iter: 190 overflow: 0.973951 HPWL: 836128766
+[NesterovSolve] Iter: 200 overflow: 0.972519 HPWL: 875331943
+[NesterovSolve] Iter: 210 overflow: 0.970312 HPWL: 923308764
+[NesterovSolve] Iter: 220 overflow: 0.966912 HPWL: 989544951
+[NesterovSolve] Iter: 230 overflow: 0.960995 HPWL: 1089566797
+[NesterovSolve] Iter: 240 overflow: 0.951896 HPWL: 1237925605
+[NesterovSolve] Iter: 250 overflow: 0.937812 HPWL: 1432077509
+[NesterovSolve] Iter: 260 overflow: 0.919668 HPWL: 1662080946
+[NesterovSolve] Iter: 270 overflow: 0.897175 HPWL: 1869229426
+[NesterovSolve] Iter: 280 overflow: 0.872271 HPWL: 1975668436
+[NesterovSolve] Iter: 290 overflow: 0.846411 HPWL: 1953953181
+[NesterovSolve] Iter: 300 overflow: 0.814004 HPWL: 1985306775
+[NesterovSolve] Iter: 310 overflow: 0.77601 HPWL: 2340307070
+[NesterovSolve] Iter: 320 overflow: 0.745222 HPWL: 2599045777
+[NesterovSolve] Iter: 330 overflow: 0.717832 HPWL: 2395080038
+[NesterovSolve] Iter: 340 overflow: 0.672248 HPWL: 2645284819
+[NesterovSolve] Iter: 350 overflow: 0.649095 HPWL: 2466165492
+[NesterovSolve] Iter: 360 overflow: 0.600172 HPWL: 2576003652
+[NesterovSolve] Snapshot saved at iter = 360
+[NesterovSolve] Iter: 370 overflow: 0.563795 HPWL: 2453239622
+[NesterovSolve] Iter: 380 overflow: 0.513661 HPWL: 2455737805
+[NesterovSolve] Iter: 390 overflow: 0.469066 HPWL: 2455148275
+[NesterovSolve] Iter: 400 overflow: 0.433779 HPWL: 2380517690
+[NesterovSolve] Iter: 410 overflow: 0.392919 HPWL: 2342947358
+[NesterovSolve] Iter: 420 overflow: 0.354071 HPWL: 2309462197
+[NesterovSolve] Iter: 430 overflow: 0.32213 HPWL: 2286557575
+[NesterovSolve] Iter: 440 overflow: 0.293149 HPWL: 2274658447
+[NesterovSolve] Iter: 450 overflow: 0.26558 HPWL: 2270686982
+[NesterovSolve] Iter: 460 overflow: 0.239111 HPWL: 2270607675
+[NesterovSolve] Iter: 470 overflow: 0.212833 HPWL: 2274828173
+[INFO GPL-0075] Routability numCall: 1 inflationIterCnt: 1 bloatIterCnt: 0
+[INFO GRT-0020] Min routing layer: met1
+[INFO GRT-0021] Max routing layer: met5
+[INFO GRT-0022] Global adjustment: 0%
+[INFO GRT-0023] Grid origin: (0, 0)
+[WARNING GRT-0043] No OR_DEFAULT vias defined.
+[INFO GRT-0224] Chose via L1M1_PR as default.
+[INFO GRT-0224] Chose via M1M2_PR as default.
+[INFO GRT-0224] Chose via M2M3_PR as default.
+[INFO GRT-0224] Chose via M3M4_PR as default.
+[INFO GRT-0224] Chose via M4M5_PR as default.
+[INFO GRT-0088] Layer li1     Track-Pitch = 0.4600  line-2-Via Pitch: 0.3400
+[INFO GRT-0088] Layer met1    Track-Pitch = 0.3400  line-2-Via Pitch: 0.3400
+[INFO GRT-0088] Layer met2    Track-Pitch = 0.4600  line-2-Via Pitch: 0.3500
+[INFO GRT-0088] Layer met3    Track-Pitch = 0.6800  line-2-Via Pitch: 0.6150
+[INFO GRT-0088] Layer met4    Track-Pitch = 0.9200  line-2-Via Pitch: 1.0400
+[INFO GRT-0088] Layer met5    Track-Pitch = 3.4000  line-2-Via Pitch: 3.1100
+[INFO GRT-0003] Macros: 0
+[INFO GRT-0004] Blockages: 374499
+[INFO GRT-0019] Found 125 clock nets.
+[INFO GRT-0001] Minimum degree: 2
+[INFO GRT-0002] Maximum degree: 23267
+[INFO GRT-0017] Processing 1080663 blockages on layer met1.
+[INFO GRT-0017] Processing 352 blockages on layer met4.
+[INFO GRT-0017] Processing 306 blockages on layer met5.
+
+[INFO GRT-0053] Routing resources analysis:
+          Routing      Original      Derated      Resource
+Layer     Direction    Resources     Resources    Reduction (%)
+---------------------------------------------------------------
+li1        Vertical            0             0          0.00%
+met1       Horizontal   10045020       5144846          48.78%
+met2       Vertical      7533765       4522140          39.98%
+met3       Horizontal    5022510       3018528          39.90%
+met4       Vertical      3013506       1510488          49.88%
+met5       Horizontal    1004502        502336          49.99%
+---------------------------------------------------------------
+
+[INFO GRT-0104] Minimal overflow 288 occurring at round 0.
+[INFO GRT-0111] Final number of vias: 371714
+[INFO GRT-0112] Final usage 3D: 1764261
+[WARNING GRT-0115] Global routing finished with overflow.
+
+[INFO GRT-0096] Final congestion report:
+Layer         Resource        Demand        Usage (%)    Max H / Max V / Total Overflow
+---------------------------------------------------------------------------------------
+li1                  0             1            0.00%             0 /  1 /  1
+met1           5144846        265565            5.16%             0 /  0 /  0
+met2           4522140        265654            5.87%             0 /  5 / 248
+met3           3018528         82049            2.72%             0 /  0 /  0
+met4           1510488         35618            2.36%             0 /  2 / 39
+met5            502336           232            0.05%             0 /  0 /  0
+---------------------------------------------------------------------------------------
+Total         14698338        649119            4.42%             0 /  8 / 288
+
+[INFO GRT-0018] Total wirelength: 6003441 um
+[INFO GPL-0036] TileLxLy: 0 0
+[INFO GPL-0037] TileSize: 6900 6900
+[INFO GPL-0038] TileCnt: 753 668
+[INFO GPL-0039] numRoutingLayers: 6
+[INFO GPL-0040] NumTiles: 503004
+[INFO GPL-0063] TotalRouteOverflowH2: 0.0
+[INFO GPL-0064] TotalRouteOverflowV2: 23.033336758613586
+[INFO GPL-0065] OverflowTileCnt2: 183
+[INFO GPL-0066] 0.5%RC: 0.9902508832851935
+[INFO GPL-0067] 1.0%RC: 0.9400452604500419
+[INFO GPL-0068] 2.0%RC: 0.8806628747663301
+[INFO GPL-0069] 5.0%RC: 0.7686673171967613
+[INFO GPL-0070] 0.5rcK: 1.0
+[INFO GPL-0071] 1.0rcK: 1.0
+[INFO GPL-0072] 2.0rcK: 0.0
+[INFO GPL-0073] 5.0rcK: 0.0
+[INFO GPL-0074] FinalRC: 0.9651481
+[NesterovSolve] Iter: 480 overflow: 0.188057 HPWL: 2283655958
+[NesterovSolve] Iter: 490 overflow: 0.166138 HPWL: 2287301711
+[NesterovSolve] Iter: 500 overflow: 0.145241 HPWL: 2292035555
+[NesterovSolve] Iter: 510 overflow: 0.124918 HPWL: 2297700101
+[NesterovSolve] Iter: 520 overflow: 0.108189 HPWL: 2294952442
+[NesterovSolve] Finished with Overflow: 0.098696
+
+==========================================================================
+global place report_checks -path_delay min
+--------------------------------------------------------------------------
+Startpoint: externalResetVector[24] (input port clocked by clk)
+Endpoint: _145481_ (removal check against rising-edge clock clk)
+Path Group: **async_default**
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          1.00    1.00 v input external delay
+                  0.00    0.00    1.00 v externalResetVector[24] (in)
+     2    0.30                           externalResetVector[24] (net)
+                  0.43    0.22    1.22 v _122290_/B (sky130_fd_sc_hd__nand2_1)
+                  0.12    0.20    1.42 ^ _122290_/Y (sky130_fd_sc_hd__nand2_1)
+     1    0.00                           _000062_ (net)
+                  0.12    0.00    1.42 ^ _145481_/SET_B (sky130_fd_sc_hd__dfbbp_1)
+                                  1.42   data arrival time
+
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00   clock reconvergence pessimism
+                                  0.00 ^ _145481_/CLK (sky130_fd_sc_hd__dfbbp_1)
+                          0.09    0.09   library removal time
+                                  0.09   data required time
+-----------------------------------------------------------------------------
+                                  0.09   data required time
+                                 -1.42   data arrival time
+-----------------------------------------------------------------------------
+                                  1.32   slack (MET)
+
+
+Startpoint: _144888_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: _122419_ (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                  0.00    0.00    0.00 ^ _144888_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                  0.06    0.30    0.30 ^ _144888_/Q (sky130_fd_sc_hd__dfxtp_1)
+     2    0.00                           dataCache_1_.io_mem_cmd_payload_data[0] (net)
+                  0.06    0.00    0.30 ^ _122419_/D (sky130_fd_sc_hd__dfxtp_1)
+                                  0.30   data arrival time
+
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00   clock reconvergence pessimism
+                                  0.00 ^ _122419_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                         -0.04   -0.04   library hold time
+                                 -0.04   data required time
+-----------------------------------------------------------------------------
+                                 -0.04   data required time
+                                 -0.30   data arrival time
+-----------------------------------------------------------------------------
+                                  0.34   slack (MET)
+
+
+
+==========================================================================
+global place report_checks -path_delay max
+--------------------------------------------------------------------------
+Startpoint: externalResetVector[12] (input port clocked by clk)
+Endpoint: _145469_ (recovery check against rising-edge clock clk)
+Path Group: **async_default**
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          1.00    1.00 v input external delay
+                  0.00    0.00    1.00 v externalResetVector[12] (in)
+     2    0.67                           externalResetVector[12] (net)
+                  2.07    1.04    2.04 v _122277_/B (sky130_fd_sc_hd__nand2_1)
+                  0.33    0.48    2.52 ^ _122277_/Y (sky130_fd_sc_hd__nand2_1)
+     1    0.00                           _000038_ (net)
+                  0.33    0.00    2.52 ^ _145469_/SET_B (sky130_fd_sc_hd__dfbbp_1)
+                                  2.52   data arrival time
+
+                  0.00   10.00   10.00   clock clk (rise edge)
+                          0.00   10.00   clock network delay (ideal)
+                          0.00   10.00   clock reconvergence pessimism
+                                 10.00 ^ _145469_/CLK (sky130_fd_sc_hd__dfbbp_1)
+                         -0.04    9.96   library recovery time
+                                  9.96   data required time
+-----------------------------------------------------------------------------
+                                  9.96   data required time
+                                 -2.52   data arrival time
+-----------------------------------------------------------------------------
+                                  7.44   slack (MET)
+
+
+Startpoint: _143572_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: _135902_ (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                  0.00    0.00    0.00 ^ _143572_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                  0.23    0.42    0.42 ^ _143572_/Q (sky130_fd_sc_hd__dfxtp_1)
+     5    0.02                           IBusCachedPlugin_cache.decodeStage_mmuRsp_physicalAddress[28] (net)
+                  0.23    0.00    0.42 ^ _061278_/B (sky130_fd_sc_hd__xor2_1)
+                  0.44    0.41    0.83 ^ _061278_/X (sky130_fd_sc_hd__xor2_1)
+     1    0.02                           _025141_ (net)
+                  0.44    0.00    0.84 ^ _061280_/B (sky130_fd_sc_hd__nor3_1)
+                  0.22    0.28    1.12 v _061280_/Y (sky130_fd_sc_hd__nor3_1)
+     4    0.04                           _025143_ (net)
+                  0.22    0.00    1.12 v _061286_/A (sky130_fd_sc_hd__and2_0)
+                  0.14    0.29    1.41 v _061286_/X (sky130_fd_sc_hd__and2_0)
+     4    0.02                           _025149_ (net)
+                  0.14    0.00    1.41 v _077118_/A1 (sky130_fd_sc_hd__a21oi_2)
+                 18.63   13.41   14.82 ^ _077118_/Y (sky130_fd_sc_hd__a21oi_2)
+   117    1.63                           _029150_ (net)
+                 18.63    0.18   15.00 ^ _079640_/A1 (sky130_fd_sc_hd__o21a_1)
+                305.83  220.53  235.53 ^ _079640_/X (sky130_fd_sc_hd__o21a_1)
+  5371   35.58                           _029825_ (net)
+                306.11    7.98  243.51 ^ _079726_/B (sky130_fd_sc_hd__nor2_1)
+                965.31 2851.46 3094.98 v _079726_/Y (sky130_fd_sc_hd__nor2_1)
+   363    3.64                           _029911_ (net)
+                965.31    0.18 3095.15 v _108782_/A1 (sky130_fd_sc_hd__a32oi_1)
+                121.72  289.01 3384.17 ^ _108782_/Y (sky130_fd_sc_hd__a32oi_1)
+     1    0.01                           _058946_ (net)
+                121.72    0.00 3384.17 ^ _108786_/A3 (sky130_fd_sc_hd__a31oi_1)
+                 19.44   23.93 3408.09 v _108786_/Y (sky130_fd_sc_hd__a31oi_1)
+     1    0.05                           _058950_ (net)
+                 19.44    0.01 3408.10 v _108787_/A2 (sky130_fd_sc_hd__o21ai_0)
+                  3.23    5.20 3413.31 ^ _108787_/Y (sky130_fd_sc_hd__o21ai_0)
+     1    0.00                           _058951_ (net)
+                  3.23    0.00 3413.31 ^ _108788_/D (sky130_fd_sc_hd__nor4_1)
+                  1.88    1.85 3415.16 v _108788_/Y (sky130_fd_sc_hd__nor4_1)
+     1    0.11                           _058952_ (net)
+                  1.88    0.04 3415.19 v _108789_/B1 (sky130_fd_sc_hd__a211oi_1)
+                  1.50    1.86 3417.05 ^ _108789_/Y (sky130_fd_sc_hd__a211oi_1)
+     1    0.05                           _058953_ (net)
+                  1.50    0.01 3417.06 ^ _109710_/A2 (sky130_fd_sc_hd__a31o_1)
+                  0.07    0.26 3417.32 ^ _109710_/X (sky130_fd_sc_hd__a31o_1)
+     1    0.00                           _013496_ (net)
+                  0.07    0.00 3417.32 ^ _135902_/D (sky130_fd_sc_hd__dfxtp_1)
+                               3417.32   data arrival time
+
+                  0.00   10.00   10.00   clock clk (rise edge)
+                          0.00   10.00   clock network delay (ideal)
+                          0.00   10.00   clock reconvergence pessimism
+                                 10.00 ^ _135902_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                         -0.07    9.93   library setup time
+                                  9.93   data required time
+-----------------------------------------------------------------------------
+                                  9.93   data required time
+                               -3417.32   data arrival time
+-----------------------------------------------------------------------------
+                               -3407.39   slack (VIOLATED)
+
+
+
+==========================================================================
+global place report_checks -unconstrained
+--------------------------------------------------------------------------
+Startpoint: externalResetVector[12] (input port clocked by clk)
+Endpoint: _145469_ (recovery check against rising-edge clock clk)
+Path Group: **async_default**
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          1.00    1.00 v input external delay
+                  0.00    0.00    1.00 v externalResetVector[12] (in)
+     2    0.67                           externalResetVector[12] (net)
+                  2.07    1.04    2.04 v _122277_/B (sky130_fd_sc_hd__nand2_1)
+                  0.33    0.48    2.52 ^ _122277_/Y (sky130_fd_sc_hd__nand2_1)
+     1    0.00                           _000038_ (net)
+                  0.33    0.00    2.52 ^ _145469_/SET_B (sky130_fd_sc_hd__dfbbp_1)
+                                  2.52   data arrival time
+
+                  0.00   10.00   10.00   clock clk (rise edge)
+                          0.00   10.00   clock network delay (ideal)
+                          0.00   10.00   clock reconvergence pessimism
+                                 10.00 ^ _145469_/CLK (sky130_fd_sc_hd__dfbbp_1)
+                         -0.04    9.96   library recovery time
+                                  9.96   data required time
+-----------------------------------------------------------------------------
+                                  9.96   data required time
+                                 -2.52   data arrival time
+-----------------------------------------------------------------------------
+                                  7.44   slack (MET)
+
+
+Startpoint: _143572_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: _135902_ (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                  0.00    0.00    0.00 ^ _143572_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                  0.23    0.42    0.42 ^ _143572_/Q (sky130_fd_sc_hd__dfxtp_1)
+     5    0.02                           IBusCachedPlugin_cache.decodeStage_mmuRsp_physicalAddress[28] (net)
+                  0.23    0.00    0.42 ^ _061278_/B (sky130_fd_sc_hd__xor2_1)
+                  0.44    0.41    0.83 ^ _061278_/X (sky130_fd_sc_hd__xor2_1)
+     1    0.02                           _025141_ (net)
+                  0.44    0.00    0.84 ^ _061280_/B (sky130_fd_sc_hd__nor3_1)
+                  0.22    0.28    1.12 v _061280_/Y (sky130_fd_sc_hd__nor3_1)
+     4    0.04                           _025143_ (net)
+                  0.22    0.00    1.12 v _061286_/A (sky130_fd_sc_hd__and2_0)
+                  0.14    0.29    1.41 v _061286_/X (sky130_fd_sc_hd__and2_0)
+     4    0.02                           _025149_ (net)
+                  0.14    0.00    1.41 v _077118_/A1 (sky130_fd_sc_hd__a21oi_2)
+                 18.63   13.41   14.82 ^ _077118_/Y (sky130_fd_sc_hd__a21oi_2)
+   117    1.63                           _029150_ (net)
+                 18.63    0.18   15.00 ^ _079640_/A1 (sky130_fd_sc_hd__o21a_1)
+                305.83  220.53  235.53 ^ _079640_/X (sky130_fd_sc_hd__o21a_1)
+  5371   35.58                           _029825_ (net)
+                306.11    7.98  243.51 ^ _079726_/B (sky130_fd_sc_hd__nor2_1)
+                965.31 2851.46 3094.98 v _079726_/Y (sky130_fd_sc_hd__nor2_1)
+   363    3.64                           _029911_ (net)
+                965.31    0.18 3095.15 v _108782_/A1 (sky130_fd_sc_hd__a32oi_1)
+                121.72  289.01 3384.17 ^ _108782_/Y (sky130_fd_sc_hd__a32oi_1)
+     1    0.01                           _058946_ (net)
+                121.72    0.00 3384.17 ^ _108786_/A3 (sky130_fd_sc_hd__a31oi_1)
+                 19.44   23.93 3408.09 v _108786_/Y (sky130_fd_sc_hd__a31oi_1)
+     1    0.05                           _058950_ (net)
+                 19.44    0.01 3408.10 v _108787_/A2 (sky130_fd_sc_hd__o21ai_0)
+                  3.23    5.20 3413.31 ^ _108787_/Y (sky130_fd_sc_hd__o21ai_0)
+     1    0.00                           _058951_ (net)
+                  3.23    0.00 3413.31 ^ _108788_/D (sky130_fd_sc_hd__nor4_1)
+                  1.88    1.85 3415.16 v _108788_/Y (sky130_fd_sc_hd__nor4_1)
+     1    0.11                           _058952_ (net)
+                  1.88    0.04 3415.19 v _108789_/B1 (sky130_fd_sc_hd__a211oi_1)
+                  1.50    1.86 3417.05 ^ _108789_/Y (sky130_fd_sc_hd__a211oi_1)
+     1    0.05                           _058953_ (net)
+                  1.50    0.01 3417.06 ^ _109710_/A2 (sky130_fd_sc_hd__a31o_1)
+                  0.07    0.26 3417.32 ^ _109710_/X (sky130_fd_sc_hd__a31o_1)
+     1    0.00                           _013496_ (net)
+                  0.07    0.00 3417.32 ^ _135902_/D (sky130_fd_sc_hd__dfxtp_1)
+                               3417.32   data arrival time
+
+                  0.00   10.00   10.00   clock clk (rise edge)
+                          0.00   10.00   clock network delay (ideal)
+                          0.00   10.00   clock reconvergence pessimism
+                                 10.00 ^ _135902_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                         -0.07    9.93   library setup time
+                                  9.93   data required time
+-----------------------------------------------------------------------------
+                                  9.93   data required time
+                               -3417.32   data arrival time
+-----------------------------------------------------------------------------
+                               -3407.39   slack (VIOLATED)
+
+
+
+==========================================================================
+global place report_tns
+--------------------------------------------------------------------------
+tns -721128.38
+
+==========================================================================
+global place report_wns
+--------------------------------------------------------------------------
+wns -3407.39
+
+==========================================================================
+global place report_worst_slack
+--------------------------------------------------------------------------
+worst slack -3407.39
+
+==========================================================================
+global place report_clock_skew
+--------------------------------------------------------------------------
+Clock clk
+Latency      CRPR       Skew
+_145458_/CLK ^
+   0.00
+_143514_/CLK ^
+   0.00      0.00       0.00
+
+
+==========================================================================
+global place report_power
+--------------------------------------------------------------------------
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power
+----------------------------------------------------------------
+Sequential             1.00e-01   5.36e-03   2.04e-07   1.06e-01  39.0%
+Combinational          1.48e-01   1.69e-02   1.65e-07   1.65e-01  61.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  2.49e-01   2.22e-02   3.69e-07   2.71e-01 100.0%
+                          91.8%       8.2%       0.0%
+
+==========================================================================
+global place report_design_area
+--------------------------------------------------------------------------
+Design area 1274500 u^2 6% utilization.
+
+Elapsed time: 2:55.77[h:]min:sec. CPU time: user 174.41 sys 1.27 (99%). Peak memory: 2498404KB.

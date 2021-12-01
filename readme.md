@@ -12,20 +12,26 @@ A2P is a mashup of OpenPOWER architecture and VexRiscv, creating a new 32b Power
 
 <img align="right" width="50%" src="media/sim.png">
 
-* Ops (100+) not thoroughly tested, but running a minimal kernel and partial Litex BIOS in Verilator and on FPGAs.  Likely still
-some bugs in CR/XER handling.
+* Ops (100+) not thoroughly tested, but running a minimal kernel and Litex BIOS in Verilator and on FPGAs.  Likely still
+some bugs in CR/XER handling for div/mul(?).
 
 * Need to define supported translation modes.
 
-* SOC builds with Litex; software is built manually and runs from 'ROM' with on-board RAM.
+* SOC builds with Litex; ~~software is built manually and runs from 'ROM' with on-board RAM.~~
+
+    * now running Litex BiOS, coremark, prototype test environment, etc. with async RAM interface on Cmod-A7 ISSI chip.
 
 * Core and SOC run in Verilator/pyverilator.  SOC uses emulated host UART.
+
+### OpenROAD Implementation
+
+* experimenting with DFFRAM for GPR, dirs, caches for efabless site
 
 ### FPGA Implementation
 
 * Currently using Cmod A7-35T board. 
 
-* Needs SOC code update to access external SRAM.  I2C works.
+* ~~Needs SOC code update to access external SRAM.~~  I2C, async RAM, multiple UARTS, custom GPIO work.
 
 <img width="50%" src="media/fpga.png">
 

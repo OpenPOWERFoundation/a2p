@@ -26,7 +26,7 @@ generate case (EXPAND_TYPE)
    `DIR_RAM: begin
       wire [6:0] adr;
       wire [31:0] dat;
-      assign adr = wr_en ? wr_adr : rd_adr;
+      assign adr = wr_en[0] ? wr_adr : rd_adr;
       assign rd_dat = dat[21:0];
       RAM128 #() dir (
          .CLK(clk),
@@ -34,7 +34,7 @@ generate case (EXPAND_TYPE)
          .A0(adr),
          .Do0(dat),
          .WE0(wr_en),
-         .Di0({'b0000000000, wr_dat})
+         .Di0({10'b0, wr_dat})
       );
    end
 

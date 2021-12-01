@@ -4,9 +4,8 @@
 
 // all mems converted to components
 // gpr uses dffram 2r1w reg
-// icdir,dcdir inferred to 1 location for openlane test
-// icdata,dcdata inferred to 1 location for openlane test
-//wtf for mems
+// icdir,dcdir,icdata,dcdata use rams
+// havent tried inferring and sim/fpga
 `include "defs.v"
 
 
@@ -280,16 +279,25 @@ module InstructionCache (
   wire                decodeStage_protError;
   //wtf reg [21:0] ways_0_tags [0:127];
   wire  [21:0] dir_rd_dat;
-  icdir #(.EXPAND_TYPE(`INFERRED), .LINES(1)) ways_0_tags (
+  icdir #(.EXPAND_TYPE(`DIR_RAM), .LINES(1)) ways_0_tags (
      .clk(clk),
      .rd_adr (_zz_5_),
      .rd_dat (dir_rd_dat),
-     .wr_en  (_zz_2_),
+     .wr_en  ({3'b0,_zz_2_}),
      .wr_adr (lineLoader_write_tag_0_payload_address),
      .wr_dat (_zz_17_)
   );
 
   //reg [31:0] ways_0_datas [0:1023];
+  wire [31:0] icdata_rd_dat;
+  icdata #(.EXPAND_TYPE(`DATA_RAM), .LINES(1)) ways_0_datas (
+     .clk(clk),
+     .rd_adr (_zz_8_),
+     .rd_dat (icdata_rd_dat),
+     .wr_en  ({3'b0,_zz_1_}),
+     .wr_adr (lineLoader_write_data_0_payload_address),
+     .wr_dat (lineLoader_write_data_0_payload_data)
+  );
 
   assign _zz_13_ = (! lineLoader_flushCounter[7]);
   assign _zz_14_ = (lineLoader_flushPending && (! (lineLoader_valid || io_cpu_fetch_isValid)));
@@ -312,15 +320,18 @@ module InstructionCache (
     end
   end
 
+/*
   always @ (posedge clk) begin
     if(_zz_1_) begin
       ways_0_datas[lineLoader_write_data_0_payload_address] <= lineLoader_write_data_0_payload_data;
     end
   end
+*/
 
   always @ (posedge clk) begin
     if(_zz_9_) begin
-      _zz_12_ <= ways_0_datas[_zz_8_];
+//      _zz_12_ <= ways_0_datas[_zz_8_];
+      _zz_12_ <= icdata_rd_dat;
     end
   end
 
@@ -633,12 +644,12 @@ module DataCache (
   reg                 loader_error;
 
   //reg [21:0] DC_DIR_tags [0:127];
-  wire [21:0] dir_rd_dat;
-  dcdir #(.EXPAND_TYPE(`INFERRED), .LINES(1)) dcdir (
+  wire [21:0] dcdir_rd_dat;
+  dcdir #(.EXPAND_TYPE(`DIR_RAM), .LINES(1)) dcdir (
      .clk(clk),
      .rd_adr (tagsReadCmd_payload),
      .rd_dat (dcdir_rd_dat),
-     .wr_en  (_zz_2_),
+     .wr_en  ({3'b0,_zz_2_}),
      .wr_adr (tagsWriteCmd_payload_address),
      .wr_dat (_zz_22_)
   );
@@ -649,7 +660,7 @@ module DataCache (
   //reg [7:0] DC_DIR_data_symbol3 [0:1023];
   wire [31:0] dcdata_rd_dat;
   wire [3:0] dcdata_we;
-  dcdata #(.EXPAND_TYPE(`INFERRED), .LINES(1)) dcdata (
+  dcdata #(.EXPAND_TYPE(`DATA_RAM), .LINES(1)) dcdata (
      .clk(clk),
      .rd_adr (dataReadCmd_payload),
      .rd_dat (dcdata_rd_dat),
@@ -4151,8 +4162,6 @@ module A2P_WB (
   wire [31:0] RegFilePlugin_regFileReadData3;
 
   gpr #(.EXPAND_TYPE(`GPR_2R1W)) RegFilePlugin_regFile (
-  //gpr #(.EXPAND_TYPE(`INFERRED)) RegFilePlugin_regFile (
-
      .clk(clk),
      .rd_adr_0 (decode_RegFilePlugin_regFileReadAddress1),
      .rd_dat_0 (RegFilePlugin_regFileReadData1),
