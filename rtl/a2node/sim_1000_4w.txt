@@ -1,0 +1,156 @@
+Memory Size=01000000B
+Loading memory from rom.bin.hex...
+Seed=08675309
+Cores: 4
+Resetting...
+Go!
+ >>> UART_0:
+ >>> UART_1:
+ >>> UART_2:
+ >>> UART_3:
+ >>> UART_0:A2Node Test!
+ >>> UART_1:A2Node Test!
+ >>> UART_2:A2Node Test!
+ >>> UART_3:A2Node Test!
+ >>> UART_0:
+ >>> UART_1:
+ >>> UART_2:
+ >>> UART_3:
+ >>> UART_0:Coremark test
+ >>> UART_1:Coremark test
+ >>> UART_2:Coremark test
+ >>> UART_3:Coremark test
+ >>> UART_0:Iterations: 1000
+ >>> UART_1:Iterations: 1000
+ >>> UART_2:Iterations: 1000
+ >>> UART_3:Iterations: 1000
+ >>> UART_0:Initing...
+ >>> UART_1:Initing...
+ >>> UART_2:Initing...
+ >>> UART_3:Initing...
+ >>> UART_0:List: 00FFF7CC 0000029A 00FFF7CC 00000000
+ >>> UART_1:List: 00BFF7CC 0000029A 00BFF7CC 00000000
+ >>> UART_2:List: 007FF7CC 0000029A 007FF7CC 00000000
+ >>> UART_3:List: 003FF7CC 0000029A 003FF7CC 00000000
+ >>> UART_0:Matrix: 00FFF7B0 0000029A 00FFFA66 00000000
+ >>> UART_1:Matrix: 00BFF7B0 0000029A 00BFFA66 00000000
+ >>> UART_2:Matrix: 007FF7B0 0000029A 007FFA66 00000000
+ >>> UART_3:Matrix: 003FF7B0 0000029A 003FFA66 00000000
+ >>> UART_0:State: 0000029A 00FFFD00 00000000
+ >>> UART_1:State: 0000029A 00BFFD00 00000000
+ >>> UART_2:State: 0000029A 007FFD00 00000000
+ >>> UART_3:State: 0000029A 003FFD00 00000000
+ >>> UART_0:Starting...
+ >>> UART_1:Starting...
+ >>> UART_2:Starting...
+ >>> UART_3:Starting...
+cyc=40000000
+cyc=80000000
+cyc=120000000
+cyc=160000000
+cyc=200000000
+cyc=240000000
+cyc=280000000
+cyc=320000000
+cyc=360000000
+cyc=400000000
+cyc=440000000
+cyc=480000000
+cyc=520000000
+cyc=560000000
+cyc=600000000
+ >>> UART_0:2K performance run parameters for coremark.
+ >>> UART_1:2K performance run parameters for coremark.
+ >>> UART_0:CoreMark Size    : 666
+ >>> UART_1:CoreMark Size    : 666
+ >>> UART_0:Total ticks      : 639078926
+ >>> UART_1:Total ticks      : 639079903
+ >>> UART_0:Total time (secs): 6
+ >>> UART_1:Total time (secs): 6
+ >>> UART_0:Iterations/Sec   : 166
+ >>> UART_1:Iterations/Sec   : 166
+ >>> UART_0:ERROR! Must execute for at least 10 secs for a valid result!
+ >>> UART_1:ERROR! Must execute for at least 10 secs for a valid result!
+ >>> UART_2:2K performance run parameters for coremark.
+ >>> UART_0:Iterations       : 1000
+ >>> UART_3:2K performance run parameters for coremark.
+ >>> UART_1:Iterations       : 1000
+ >>> UART_0:Compiler version : GCC9.3.0
+ >>> UART_2:CoreMark Size    : 666
+ >>> UART_1:Compiler version : GCC9.3.0
+ >>> UART_0:Compiler flags   : 
+ >>> UART_3:CoreMark Size    : 666
+ >>> UART_1:Compiler flags   : 
+ >>> UART_2:Total ticks      : 639099865
+ >>> UART_0:Memory location  : STACK
+ >>> UART_1:Memory location  : STACK
+ >>> UART_3:Total ticks      : 639102185
+ >>> UART_2:Total time (secs): 6
+ >>> UART_0:seedcrc          : 0xe9f5
+ >>> UART_1:seedcrc          : 0xe9f5
+ >>> UART_3:Total time (secs): 6
+ >>> UART_2:Iterations/Sec   : 166
+ >>> UART_0:[0]crclist       : 0xe714
+ >>> UART_3:Iterations/Sec   : 166
+ >>> UART_1:[0]crclist       : 0xe714
+ >>> UART_2:ERROR! Must execute for at least 10 secs for a valid result!
+ >>> UART_0:[0]crcmatrix     : 0x1fd7
+ >>> UART_3:ERROR! Must execute for at least 10 secs for a valid result!
+ >>> UART_1:[0]crcmatrix     : 0x1fd7
+ >>> UART_2:Iterations       : 1000
+ >>> UART_3:Iterations       : 1000
+ >>> UART_0:[0]crcstate      : 0x8e3a
+ >>> UART_2:Compiler version : GCC9.3.0
+ >>> UART_1:[0]crcstate      : 0x8e3a
+ >>> UART_2:Compiler flags   : 
+ >>> UART_3:Compiler version : GCC9.3.0
+ >>> UART_0:[0]crcfinal      : 0xd340
+ >>> UART_3:Compiler flags   : 
+ >>> UART_2:Memory location  : STACK
+ >>> UART_1:[0]crcfinal      : 0xd340
+ >>> UART_3:Memory location  : STACK
+ >>> UART_2:seedcrc          : 0xe9f5
+ >>> UART_0:Correct operation validated. See README.md for run and reporting rules.
+ >>> UART_0:
+ >>> UART_3:seedcrc          : 0xe9f5
+ >>> UART_0:Pass.
+ >>> UART_0:
+cyc=639212365 WBI Data @=0000f000 data=00000048
+ ** pass address ifetch'd (1)...
+ >>> UART_1:Correct operation validated. See README.md for run and reporting rules.
+ >>> UART_1:
+ >>> UART_1:Pass.
+ >>> UART_1:
+cyc=639213694 WBI Data @=0000f000 data=00000048
+ ** pass address ifetch'd (2)...
+ >>> UART_2:[0]crclist       : 0xe714
+ >>> UART_3:[0]crclist       : 0xe714
+ >>> UART_2:[0]crcmatrix     : 0x1fd7
+ >>> UART_3:[0]crcmatrix     : 0x1fd7
+ >>> UART_2:[0]crcstate      : 0x8e3a
+ >>> UART_3:[0]crcstate      : 0x8e3a
+ >>> UART_2:[0]crcfinal      : 0xd340
+ >>> UART_3:[0]crcfinal      : 0xd340
+ >>> UART_2:Correct operation validated. See README.md for run and reporting rules.
+ >>> UART_2:
+ >>> UART_2:Pass.
+ >>> UART_2:
+cyc=639232242 WBI Data @=0000f000 data=00000048
+ ** pass address ifetch'd (3)...
+ >>> UART_3:Correct operation validated. See README.md for run and reporting rules.
+ >>> UART_3:
+ >>> UART_3:Pass.
+ >>> UART_3:
+cyc=639234350 WBI Data @=0000f000 data=00000048
+ ** pass address ifetch'd (4)...
+
+Statistics
+  IFetch: 11416960
+   DRead: 00007676
+  DWrite: 111415376
+
+Done.
+
+You has opulence.
+
+Seed=08675309
